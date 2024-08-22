@@ -1,0 +1,28 @@
+.statusNoSubmission,
+.statusPendingReview,
+.statusApproved,
+.statusRejected {
+  font-size: small;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-left: 15px;
+  padding: 0px 15px;
+  text-transform: uppercase;
+}
+
+.statusNoSubmission {
+  background-color: rgba(0, 0, 0, 0.098);
+}
+
+.statusPendingReview{
+  background-color: #FAE8A4;
+}
+
+.statusApproved {
+  background-color: #98E9AB;
+}
+
+.statusRejected {
+  background-color: #E99898;
+}
+
