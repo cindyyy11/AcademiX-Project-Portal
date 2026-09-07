@@ -21,6 +21,7 @@
     "@headlessui/tailwindcss": "^0.2.1",
     "@hello-pangea/dnd": "^16.6.0",
     "@heroicons/react": "^2.1.4",
+    "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@react-icons/all-files": "^4.1.0",
@@ -73,11 +74,13 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "@types/multer": "^1.4.11",
     "@typescript-eslint/parser": "^7.2.0",
     "daisyui": "^4.12.8",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.2.3",
+    "postcss-import": "^16.1.0",
     "react-toastify": "^10.0.5"
   }
 }
