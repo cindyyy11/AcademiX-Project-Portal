@@ -52,7 +52,7 @@ real-time chat and notifications.
 | --- | --- |
 | `academix` (main frontend) | Next.js 14, React 18, TypeScript, Chakra UI, Tailwind CSS, Redux Toolkit |
 | `fyp-management-system-backend` (core API) | Node.js, Express, TypeScript, MongoDB/Mongoose, Redis, Socket.io, JWT auth |
-| `academix/pages/inbox/backend` (chat service) | Node.js, Express, Socket.io |
+| `inbox-backend` (chat service) | Node.js, Express |
 | `landingPage` (marketing site) | Next.js 14, TypeScript, Tailwind CSS |
 
 ## Project structure
@@ -61,7 +61,6 @@ real-time chat and notifications.
 AcademiX-Project-Portal/
 ├── academix/                        # Main app (Next.js, port 3000)
 │   ├── pages/                       #   Admin / Student / Supervisor dashboards, projects, auth, inbox, crm...
-│   │   └── inbox/backend/           #   Chat microservice (Express + Socket.io, port 3001)
 │   ├── components/                  #   Shared UI components (Layout, Sidebar, Header, Logo, Modal, ...)
 │   ├── redux/features/              #   Redux Toolkit slices & RTK Query API (auth, user, notifications)
 │   ├── templates/                   #   Page-level templates (Dashboard, CRM, Profile, Project Management...)
@@ -76,6 +75,9 @@ AcademiX-Project-Portal/
 │   ├── middleware/                  #   Auth, error handling, rate limiting
 │   └── socketServer.ts              #   Real-time notifications/chat via Socket.io
 │
+├── inbox-backend/                   # Chat microservice (Express, port 3001)
+│   └── index.js                     #   Auth bridge to the ChatEngine.io inbox
+│
 └── landingPage/                     # Public marketing site (Next.js, port 3002)
     ├── app/                         #   App Router pages ((default), (auth), api)
     ├── components/                  #   Landing sections (hero, features, testimonials, banner...)
@@ -88,7 +90,7 @@ Each service runs independently — start the ones you need in separate terminal
 
 1. **Main app** — `cd academix && npm run dev` → http://localhost:3000
 2. **Core backend API** — `cd fyp-management-system-backend && npm run dev` → http://localhost:8000
-3. **Inbox/chat backend** — `cd academix/pages/inbox/backend && npm run dev` → http://localhost:3001
+3. **Inbox/chat backend** — `cd inbox-backend && npm run dev` → http://localhost:3001
 4. **Landing page** — `cd landingPage && npm run dev` → http://localhost:3002
 
 > Each service manages its own dependencies — run `npm install` inside each folder before its
