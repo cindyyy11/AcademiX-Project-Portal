@@ -19,7 +19,7 @@ const AuthPage = (props) => {
         const { username, secret } = e.target.elements;
         const userData = { username: username.value, secret: secret.value };
 
-        axios.post('http://localhost:3001/authenticate', userData)
+        axios.post('/api/inbox/authenticate', userData)
             .then(r => {
                 props.onAuth({ ...r.data, secret: userData.secret });
             })
