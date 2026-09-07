@@ -1,0 +1,104 @@
+/* Typography */
+.h1 {
+    font-size: 2.25rem; /* equivalent to text-4xl */
+    font-weight: 800; /* equivalent to font-extrabold */
+    line-height: 1.25; /* equivalent to leading-tight */
+    letter-spacing: -0.025em; /* equivalent to tracking-tighter */
+  }
+  
+  .h2 {
+    font-size: 1.875rem; /* equivalent to text-3xl */
+    font-weight: 800; /* equivalent to font-extrabold */
+    line-height: 1.25; /* equivalent to leading-tight */
+    letter-spacing: -0.025em; /* equivalent to tracking-tighter */
+  }
+  
+  .h3 {
+    font-size: 1.875rem; /* equivalent to text-3xl */
+    font-weight: 700; /* equivalent to font-bold */
+    line-height: 1.25; /* equivalent to leading-tight */
+  }
+  
+  .h4 {
+    font-size: 1.5rem; /* equivalent to text-2xl */
+    font-weight: 700; /* equivalent to font-bold */
+    line-height: 1.5; /* equivalent to leading-snug */
+    letter-spacing: -0.025em; /* equivalent to tracking-tight */
+  }
+
+  @media (min-width: md) { /* uses Tailwind's `md` breakpoint */
+    .h1 {
+      font-size: 5xl;
+    }
+    .h2 {
+      font-size: 4xl;
+    }
+}
+
+/* Buttons */
+.btn,.btn-sm {
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn {
+    padding-left: 2rem; /* px-8 */
+    padding-right: 2rem; /* px-8 */
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem; /* py-3 */
+}
+
+.btn-sm {
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+}
+
+/* Forms */
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select {
+  /* Shared styles for input-like elements */
+  background-color: transparent;
+  border: 1px solid var(--gray-700);
+  border-radius: 0.25rem; /* added to replace rounded-sm */
+  padding: 0.75rem 1rem;
+}
+
+.form-input,
+.form-textarea {
+  /* Additional styles for input and textarea */
+  &::placeholder {
+    color: var(--gray-500);
+  }
+}
+
+.form-select {
+  /* Additional style for select */
+  padding-right: 2.5rem;
+}
+
+.form-checkbox,
+.form-radio {
+  /* Shared styles for checkbox and radio */
+  color: var(--purple--600);
+  border-radius: 0.25rem; /* added to replace rounded-sm */
+}
+
+/* No need for this rule anymore, as border-radius is already applied above */
+/* .form-input,
+.form-textarea,
+.form-multiselect,
+.form-checkbox,
+.form-radio {
+  border-radius: 0.25rem;
+} */
