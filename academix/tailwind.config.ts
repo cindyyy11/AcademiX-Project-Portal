@@ -30,6 +30,22 @@ module.exports = {
       // => @media (max-width: 767px) { ... }
       sm: { max: "480px" },
       // => @media (max-width: 480px) { ... }
+
+      // Namespaced min-width breakpoints for the merged marketing site
+      // (app/** and components/landing/**). These mirror Tailwind's stock
+      // default breakpoints, which that code was originally authored against.
+      // They are deliberately separate from the max-width keys above, which
+      // the pre-existing dashboard (pages/, components/, templates/) relies on.
+      "land-sm": "640px",
+      // => @media (min-width: 640px) { ... }
+      "land-md": "768px",
+      // => @media (min-width: 768px) { ... }
+      "land-lg": "1024px",
+      // => @media (min-width: 1024px) { ... }
+      "land-xl": "1280px",
+      // => @media (min-width: 1280px) { ... }
+      "land-2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
     extend: {
       colors: {
@@ -37,6 +53,11 @@ module.exports = {
           1: "#AE7AFF",
           2: "#8B62CC",
           3: "#EFE4FF",
+        },
+        // Marketing-site purple scale (app/** and components/landing/**).
+        // Namespaced as `lpurple` so it does not overwrite Tailwind's stock
+        // `purple` palette, which the pre-existing dashboard depends on.
+        lpurple: {
           100: "#F4F4FF",
           200: "#E2E1FF",
           300: "#CBCCFF",
@@ -47,7 +68,10 @@ module.exports = {
           800: "#38379C",
           900: "#262668",
         },
-        gray: {
+        // Marketing-site gray scale (app/** and components/landing/**).
+        // Namespaced as `lgray` so it does not overwrite Tailwind's stock
+        // `gray` palette, which the pre-existing dashboard depends on.
+        lgray: {
           100: "#EBF1F5",
           200: "#D9E3EA",
           300: "#C5D2DC",
@@ -141,12 +165,10 @@ module.exports = {
       },
       letterSpacing: {
         tagline: ".15em",
-        tighter: "-0.02em",
-        tight: "-0.01em",
-        normal: "0",
-        wide: "0.01em",
-        wider: "0.02em",
-        widest: "0.4em",
+        // Marketing-site tracking (app/** and components/landing/**),
+        // namespaced so Tailwind's stock letterSpacing defaults stay intact
+        // for the pre-existing dashboard.
+        "land-tight": "-0.01em",
       },
       inset: {
         full: "100%",
@@ -192,15 +214,11 @@ module.exports = {
       fontSize: {
         0: ["0px", "0px"],
         sm: ["0.875rem", "1.3125rem"],
-        xs: "0.75rem",
-        base: "1rem",
-        lg: "1.125rem",
-        xl: "1.25rem",
-        "2xl": "1.5rem",
-        "3xl": "2rem",
-        "4xl": "2.5rem",
-        "5xl": "3.25rem",
-        "6xl": "4rem",
+        // Marketing-site font sizes (app/** and components/landing/**),
+        // namespaced so they do not replace Tailwind's built-in
+        // [size, lineHeight] tuples for `lg`/`xl` app-wide.
+        "land-lg": "1.125rem",
+        "land-xl": "1.25rem",
         h1: [
           "3rem",
           {

@@ -19,7 +19,7 @@ const SidebarRaw = ({}: SidebarProps) => {
   const handleLogout = async () => {
     try {
       await axios.get("http://localhost:8000/api/v1/logout");
-      window.location.href = "http://localhost:3002/";
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -69,7 +69,7 @@ const SidebarRaw = ({}: SidebarProps) => {
           {userData?.user?.name || "N/A"}
         </Link>
         <div className="flex justify-end items-end">
-          <a href="http://localhost:3002/" onClick={handleLogout}>
+          <a href="/" onClick={handleLogout}>
             <button
               className={`btn-transparent-light btn-square btn-small ml-auto`}
             >

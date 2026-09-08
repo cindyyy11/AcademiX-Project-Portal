@@ -25,7 +25,7 @@
   }
   
   .form-switch input[type="checkbox"]:checked + label {
-    background-color: #6c5ce7; /* instead of @apply bg-purple-600 */
+    background-color: #6c5ce7; /* instead of @apply bg-lpurple-600 */
   }
   
   .form-switch input[type="checkbox"]:checked + label > span:first-child {
