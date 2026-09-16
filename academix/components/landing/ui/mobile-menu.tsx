@@ -42,7 +42,7 @@ export default function DesktopMenu() {
       >
         <span className="sr-only">Menu</span>
         <svg
-          className="w-6 h-6 fill-current text-lgray-800 hover:text-lgray-600 transition duration-150 ease-in-out"
+          className="w-6 h-6 fill-current text-n-1 hover:text-n-3 transition duration-150 ease-in-out"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -60,14 +60,14 @@ export default function DesktopMenu() {
       >
         <ul className="bg-white px-4 py-2">
           <li>
-            <Link href="/signin" className="flex font-medium w-full text-lpurple-600 hover:text-lgray-800 py-2 justify-center" onClick={() => setDesktopNavOpen(false)}>
+            <Link href="/signin" className="flex font-medium w-full text-purple-1 hover:text-n-1 py-2 justify-center" onClick={() => setDesktopNavOpen(false)}>
               Sign in
             </Link>
           </li>
           <li>
             <Link
               href="/signup"
-              className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-lpurple-600 hover:bg-lpurple-700 transition duration-150 ease-in-out" onClick={() => setDesktopNavOpen(false)}
+              className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 text-white bg-purple-1 hover:bg-purple-2 transition duration-150 ease-in-out" onClick={() => setDesktopNavOpen(false)}
             >
               Sign up
             </Link>

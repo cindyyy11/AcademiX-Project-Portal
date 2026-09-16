@@ -3,7 +3,7 @@ import MobileMenu from './mobile-menu'
 
 export default function Header() {
   return (
-    <header className="absolute w-full z-30">
+    <header className="absolute w-full z-30 bg-background border-b border-n-1">
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Site branding */}
@@ -18,7 +18,7 @@ export default function Header() {
               <li>
                 {/* Make sure to add the link */}
                 <Link href="http://localhost:3000/Auth/login" passHref>
-                  <span className="btn-sm text-white bg-lpurple-600 hover:bg-lpurple-700">
+                  <span className="btn-small btn-purple">
                     Sign In
                   </span>
                 </Link>
