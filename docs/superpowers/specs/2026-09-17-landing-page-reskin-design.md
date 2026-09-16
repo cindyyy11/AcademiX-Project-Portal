@@ -98,10 +98,15 @@ not a literal find-replace.
 `zigzag.tsx`, `modal-video.tsx` (if it carries any color classes worth checking),
 `components/landing/ui/header.tsx`, `footer.tsx`, `mobile-menu.tsx`.
 
-The two `styled-components`-based stub pages (`signup/page.tsx`, `reset-password/page.tsx`) don't
-use Tailwind classes — update their inline `lightTheme`/`darkTheme` JS objects' hex values to the
-exact same tokens (`background` → `#FAF4F0`, `buttonBackground` → `#AE7AFF`, etc.) rather than
-rewriting them as Tailwind.
+Correction from initial investigation: only `signup/page.tsx` uses `styled-components` (with its
+own `lightTheme`/`darkTheme` JS objects) — `reset-password/page.tsx` actually uses plain Tailwind
+classes (`lgray-*`/`lpurple-*`/`land-xl` etc.), same as the rest of the landing tree, and follows
+the same color-mapping table as everything else. For `signup/page.tsx`, update only the
+`lightTheme` object's hex values to the equivalent tokens (`background` → `#FAF4F0`,
+`buttonBackground` → `#AE7AFF`, `buttonHoverBackground` → `#8B62CC`) plus the two hardcoded
+`#7d00ff` accent references outside the theme object (the "X" in the logo, the "Recover password"
+link) → `#8B62CC`. Leave `darkTheme` untouched — it's this page's own separate light/dark toggle
+feature, unrelated to the site-wide dark theme this reskin removes.
 
 ## Verification
 
