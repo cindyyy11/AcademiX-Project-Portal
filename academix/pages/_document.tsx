@@ -4,6 +4,7 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head>
+                <link rel="icon" href="/assets/AcademiXProjectPortal-favicon.png" type="image/png" />
                 <meta
                      content="Final year project management system for students and faculty"
                      name="AcademiX Project Portal"
