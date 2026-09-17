@@ -4,7 +4,7 @@ export default function Newsletter() {
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
 
         {/* CTA box */}
-        <div className="relative bg-purple-1 py-10 px-8 land-md:py-16 land-md:px-12 border border-n-1" data-aos="fade-up">
+        <div className="relative bg-purple-1 py-10 px-8 land-md:py-16 land-md:px-12 border border-n-1 shadow-primary-6" data-aos="fade-up">
 
           {/* Background illustration */}
           <div className="absolute right-0 top-0 -ml-40 pointer-events-none" aria-hidden="true">
@@ -23,14 +23,14 @@ export default function Newsletter() {
 
             {/* CTA content */}
             <div className="mb-6 land-lg:mr-16 land-lg:mb-0 text-center land-lg:text-left land-lg:w-1/2">
-              <h3 className="h3 text-white mb-2">Stay in the loop</h3>
-              <p className="text-white/80 text-lg">Join our newsletter to get top news before anyone else.</p>
+              <h3 className="h3 text-n-1 mb-2">Stay in the loop</h3>
+              <p className="text-n-1/70 text-lg">Join our newsletter to get top news before anyone else.</p>
             </div>
 
             {/* CTA form */}
             <form className="w-full land-lg:w-1/2">
               <div className="flex flex-col land-sm:flex-row justify-center max-w-xs mx-auto land-sm:max-w-md land-lg:max-w-none">
-                <input type="email" className="w-full appearance-none bg-purple-2 border border-purple-3 focus:border-white px-4 py-3 mb-2 land-sm:mb-0 land-sm:mr-2 text-white placeholder-white/60" placeholder="Your Email" aria-label="Your Email" />
+                <input type="email" className="w-full appearance-none bg-white border border-n-1 focus:border-purple-1 px-4 py-3 mb-2 land-sm:mb-0 land-sm:mr-2 text-n-1 placeholder-n-3" placeholder="Your Email" aria-label="Your Email" />
                 <a className="btn text-purple-1 bg-white hover:bg-purple-3 shadow" href="#0">Subscribe</a>
               </div>
               {/* Success message */}

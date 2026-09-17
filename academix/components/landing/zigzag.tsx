@@ -36,19 +36,19 @@ export default function Zigzag() {
                   <p className="text-xl text-n-3 mb-4">Explore how effective project management has led to successful final year projects by viewing our detailed case studies. Dive into real-life examples showcasing how students have overcome challenges, stayed on schedule, and achieved outstanding results. Our case studies offer valuable insights into the strategies and tools used, the obstacles faced, and the impactful outcomes achieved.</p>
                   <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Step-by-Step Project Breakdown</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span> Innovative Problem-Solving</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Measurable Success Metrics</span>
@@ -72,19 +72,19 @@ export default function Zigzag() {
                   <p className="text-xl text-n-3 mb-4">Supervisors and academic mentors can gain valuable insights into effective project planning strategies by exploring our detailed case studies. Each study delves into how students under supervision meticulously planned their final year projects, navigated challenges, and implemented successful strategies.</p>
                   <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Professional Development</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Clear Project Milestones</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Comprehensive Project Planning</span>
@@ -108,19 +108,19 @@ export default function Zigzag() {
                   <p className="text-xl text-n-3 mb-4">Efficient project scheduling is crucial for achieving milestones and delivering results on time. At AcademiX, we emphasize meticulous planning and strategic scheduling to ensure projects proceed smoothly and meet deadlines. Our approach involves creating detailed schedules that outline tasks, milestones, and timelines clearly. We prioritize regular monitoring and proactive adjustments to keep projects on track and mitigate any potential delays.</p>
                   <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Proactive Monitoring and Adjustments</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Timeline Management</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-n-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Flexibility and Adaptability</span>
