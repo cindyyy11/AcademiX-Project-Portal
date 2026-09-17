@@ -9,14 +9,14 @@ import { Brightness4Outlined } from '@mui/icons-material';
 
 // Define light and dark themes
 const lightTheme = {
-  background: '#f9f1eb',
+  background: '#FAF4F0',
   formBackground: '#fff',
   textColor: '#000',
   inputBackground: '#fff',
   inputBorderColor: '#000',
   iconColor: '#888',
-  buttonBackground: '#b673f8',
-  buttonHoverBackground: '#7d00ff',
+  buttonBackground: '#AE7AFF',
+  buttonHoverBackground: '#8B62CC',
 };
 
 const darkTheme = {
@@ -134,7 +134,7 @@ const Checkbox = styled.input`
 `;
 
 const Link = styled.a`
-  color: #7d00ff;
+  color: #8B62CC;
   cursor: pointer;
   font-size: 1.25rem;
   margin-right: -3rem;
@@ -265,7 +265,7 @@ const Login = () => {
   <Brightness4Outlined style={{ marginRight: '0.5rem' }} />
   {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
 </DarkModeButton>
-        <Logo>Academi<span style={{ color: '#7d00ff' }}>X</span></Logo>
+        <Logo>Academi<span style={{ color: '#8B62CC' }}>X</span></Logo>
         <FormContainer>
           <Title>Sign in</Title>
           <Subtitle>Enter your account details</Subtitle>
