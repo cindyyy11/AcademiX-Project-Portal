@@ -8,15 +8,15 @@ export default function Zigzag() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
-        <div className="py-12 land-md:py-20 border-t border-lgray-800">
+        <div className="py-12 land-md:py-20 border-t border-n-1">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-16">
-            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-green-600 bg-green-200 rounded-full mb-4">Achieve impactful milestones
+            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-green-1 rounded-full mb-4">Achieve impactful milestones
           </div>
             <h1 className="h2 mb-4">One platform, countless possibilities
           </h1>
-            <p className="text-land-xl text-lgray-400">One platform, countless possibilities: AcademiX is your all-in-one solution for final year project management. Designed to streamline and simplify every step of the project lifecycle, AcademiX empowers students and educators with robust tools for planning, collaboration, and execution. From ideation to final presentation, our platform ensures that every milestone is met with precision and efficiency, paving the way for academic success and innovation.</p>
+            <p className="text-xl text-n-3">One platform, countless possibilities: AcademiX is your all-in-one solution for final year project management. Designed to streamline and simplify every step of the project lifecycle, AcademiX empowers students and educators with robust tools for planning, collaboration, and execution. From ideation to final presentation, our platform ensures that every milestone is met with precision and efficiency, paving the way for academic success and innovation.</p>
           </div>
 
           {/* Items */}
@@ -31,24 +31,24 @@ export default function Zigzag() {
               {/* Content */}
               <div className="max-w-xl land-md:max-w-none land-md:w-full mx-auto land-md:col-span-7 land-lg:col-span-6" data-aos="fade-right">
                 <div className="land-md:pr-4 land-lg:pr-12 land-xl:pr-16">
-                  <div className="font-architects-daughter text-land-xl text-lpurple-600 mb-2">More Efficient</div>
+                  <div className="text-xl text-purple-1 mb-2">More Efficient</div>
                   <h3 className="h3 mb-3">View Case Study</h3>
-                  <p className="text-land-xl text-lgray-400 mb-4">Explore how effective project management has led to successful final year projects by viewing our detailed case studies. Dive into real-life examples showcasing how students have overcome challenges, stayed on schedule, and achieved outstanding results. Our case studies offer valuable insights into the strategies and tools used, the obstacles faced, and the impactful outcomes achieved.</p>
-                  <ul className="text-land-lg text-lgray-400 -mb-2">
+                  <p className="text-xl text-n-3 mb-4">Explore how effective project management has led to successful final year projects by viewing our detailed case studies. Dive into real-life examples showcasing how students have overcome challenges, stayed on schedule, and achieved outstanding results. Our case studies offer valuable insights into the strategies and tools used, the obstacles faced, and the impactful outcomes achieved.</p>
+                  <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Step-by-Step Project Breakdown</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span> Innovative Problem-Solving</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Measurable Success Metrics</span>
@@ -67,24 +67,24 @@ export default function Zigzag() {
               {/* Content */}
               <div className="max-w-xl land-md:max-w-none land-md:w-full mx-auto land-md:col-span-7 land-lg:col-span-6" data-aos="fade-left">
                 <div className="land-md:pl-4 land-lg:pl-12 land-xl:pl-16">
-                  <div className="font-architects-daughter text-land-xl text-lpurple-600 mb-2">More Detailed</div>
+                  <div className="text-xl text-purple-1 mb-2">More Detailed</div>
                   <h3 className="h3 mb-3">Planning Made Easier</h3>
-                  <p className="text-land-xl text-lgray-400 mb-4">Supervisors and academic mentors can gain valuable insights into effective project planning strategies by exploring our detailed case studies. Each study delves into how students under supervision meticulously planned their final year projects, navigated challenges, and implemented successful strategies.</p>
-                  <ul className="text-land-lg text-lgray-400 -mb-2">
+                  <p className="text-xl text-n-3 mb-4">Supervisors and academic mentors can gain valuable insights into effective project planning strategies by exploring our detailed case studies. Each study delves into how students under supervision meticulously planned their final year projects, navigated challenges, and implemented successful strategies.</p>
+                  <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Professional Development</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Clear Project Milestones</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Comprehensive Project Planning</span>
@@ -103,24 +103,24 @@ export default function Zigzag() {
               {/* Content */}
               <div className="max-w-xl land-md:max-w-none land-md:w-full mx-auto land-md:col-span-7 land-lg:col-span-6" data-aos="fade-right">
                 <div className="land-md:pr-4 land-lg:pr-12 land-xl:pr-16">
-                  <div className="font-architects-daughter text-land-xl text-lpurple-600 mb-2">More Insight</div>
+                  <div className="text-xl text-purple-1 mb-2">More Insight</div>
                   <h3 className="h3 mb-3">Keep projects on schedule</h3>
-                  <p className="text-land-xl text-lgray-400 mb-4">Efficient project scheduling is crucial for achieving milestones and delivering results on time. At AcademiX, we emphasize meticulous planning and strategic scheduling to ensure projects proceed smoothly and meet deadlines. Our approach involves creating detailed schedules that outline tasks, milestones, and timelines clearly. We prioritize regular monitoring and proactive adjustments to keep projects on track and mitigate any potential delays.</p>
-                  <ul className="text-land-lg text-lgray-400 -mb-2">
+                  <p className="text-xl text-n-3 mb-4">Efficient project scheduling is crucial for achieving milestones and delivering results on time. At AcademiX, we emphasize meticulous planning and strategic scheduling to ensure projects proceed smoothly and meet deadlines. Our approach involves creating detailed schedules that outline tasks, milestones, and timelines clearly. We prioritize regular monitoring and proactive adjustments to keep projects on track and mitigate any potential delays.</p>
+                  <ul className="text-lg text-n-3 -mb-2">
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Proactive Monitoring and Adjustments</span>
                     </li>
                     <li className="flex items-center mb-2">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Timeline Management</span>
                     </li>
                     <li className="flex items-center">
-                      <svg className="w-3 h-3 fill-current text-green-500 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-3 h-3 fill-current text-green-1 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                       </svg>
                       <span>Flexibility and Adaptability</span>

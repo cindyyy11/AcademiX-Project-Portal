@@ -25,13 +25,13 @@ export default function Hero() {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-16">
             <h1 className="h1 mb-4" data-aos="fade-up">AcademiX Project Portal</h1>
-            <p className="text-land-xl text-lgray-400 mb-8" data-aos="fade-up" data-aos-delay="200">AcademiX: Empowering Education through Seamless Project Collaboration</p>
+            <p className="text-xl text-n-3 mb-8" data-aos="fade-up" data-aos-delay="200">AcademiX: Empowering Education through Seamless Project Collaboration</p>
             <div className="max-w-xs mx-auto land-sm:max-w-none land-sm:flex land-sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
-                <a className="btn text-white bg-lpurple-600 hover:bg-lpurple-700 w-full mb-4 land-sm:w-auto land-sm:mb-0" href="http://localhost:3000/Auth/login">Join Now</a>
+                <a className="btn-purple w-full mb-4 land-sm:w-auto land-sm:mb-0" href="http://localhost:3000/Auth/login">Join Now</a>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
-                <a className="btn text-white bg-lgray-700 hover:bg-lgray-800 w-full land-sm:w-auto land-sm:ml-4" href="#0">Learn more</a>
+                <a className="btn-stroke w-full land-sm:w-auto land-sm:ml-4" href="#0">Learn more</a>
               </div>
             </div>
           </div>
