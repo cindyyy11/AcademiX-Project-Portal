@@ -54,34 +54,6 @@ module.exports = {
           2: "#8B62CC",
           3: "#EFE4FF",
         },
-        // Marketing-site purple scale (app/** and components/landing/**).
-        // Namespaced as `lpurple` so it does not overwrite Tailwind's stock
-        // `purple` palette, which the pre-existing dashboard depends on.
-        lpurple: {
-          100: "#F4F4FF",
-          200: "#E2E1FF",
-          300: "#CBCCFF",
-          400: "#ABABFF",
-          500: "#8D8DFF",
-          600: "#5D5DFF",
-          700: "#4B4ACF",
-          800: "#38379C",
-          900: "#262668",
-        },
-        // Marketing-site gray scale (app/** and components/landing/**).
-        // Namespaced as `lgray` so it does not overwrite Tailwind's stock
-        // `gray` palette, which the pre-existing dashboard depends on.
-        lgray: {
-          100: "#EBF1F5",
-          200: "#D9E3EA",
-          300: "#C5D2DC",
-          400: "#9BA9B4",
-          500: "#707D86",
-          600: "#55595F",
-          700: "#33363A",
-          800: "#25282C",
-          900: "#151719",
-        },
         yellow: {
           1: "#FAE8A4",
           2: "#FEFAED",
@@ -165,10 +137,6 @@ module.exports = {
       },
       letterSpacing: {
         tagline: ".15em",
-        // Marketing-site tracking (app/** and components/landing/**),
-        // namespaced so Tailwind's stock letterSpacing defaults stay intact
-        // for the pre-existing dashboard.
-        "land-tight": "-0.01em",
       },
       inset: {
         full: "100%",
@@ -208,17 +176,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-roboto)", ...fontFamily.sans],
-        inter: ["var(--font-inter)", "sans-serif"],
-        "architects-daughter": ["var(--font-architects-daughter)", "sans-serif"],
       },
       fontSize: {
         0: ["0px", "0px"],
         sm: ["0.875rem", "1.3125rem"],
-        // Marketing-site font sizes (app/** and components/landing/**),
-        // namespaced so they do not replace Tailwind's built-in
-        // [size, lineHeight] tuples for `lg`/`xl` app-wide.
-        "land-lg": "1.125rem",
-        "land-xl": "1.25rem",
         h1: [
           "3rem",
           {
