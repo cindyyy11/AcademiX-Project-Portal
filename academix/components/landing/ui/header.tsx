@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import ThemeToggle from './theme-toggle'
 
 export default function Header() {
@@ -18,9 +17,9 @@ export default function Header() {
                 <ThemeToggle />
               </li>
               <li>
-                <Link href="/Auth/login" className="btn-purple btn-medium">
+                <a href="/Auth/login" className="btn-purple btn-medium">
                   Sign In
-                </Link>
+                </a>
               </li>
             </ul>
           </nav>
