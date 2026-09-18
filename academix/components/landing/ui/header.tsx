@@ -14,7 +14,7 @@ export default function Header() {
           <nav className="flex grow items-center">
             <ul className="flex-grow flex justify-end items-center space-x-4">
               <li>
-                <Link href="/Auth/login" className="btn-small btn-purple">
+                <Link href="/Auth/login" className="btn-purple">
                   Sign In
                 </Link>
               </li>
