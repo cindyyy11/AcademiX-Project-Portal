@@ -24,7 +24,7 @@ export default function DefaultLayout({
   })
 
   return (
-    <div className="hidden land-md:block"> {/* Only render for desktop */}
+    <div>
       <main className="grow">
 
         <PageIllustration />

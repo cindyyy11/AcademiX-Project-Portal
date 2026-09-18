@@ -6,7 +6,7 @@ import FeatImage03 from '@/public/images/ProjectTimeline-4Planning.png'
 
 export default function Zigzag() {
   return (
-    <section>
+    <section id="how-it-works">
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="py-12 land-md:py-20 border-t border-n-1">
 

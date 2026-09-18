@@ -1,4 +1,4 @@
-export default function Newsletter() {
+export default function Cta() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
@@ -23,19 +23,15 @@ export default function Newsletter() {
 
             {/* CTA content */}
             <div className="mb-6 land-lg:mr-16 land-lg:mb-0 text-center land-lg:text-left land-lg:w-1/2">
-              <h3 className="h3 text-n-1 mb-2">Stay in the loop</h3>
-              <p className="text-n-1/70 text-lg">Join our newsletter to get top news before anyone else.</p>
+              <h3 className="h3 text-n-1 mb-2">Ready to get started?</h3>
+              <p className="text-n-1/70 text-lg">Create your account and set up your first project timeline in minutes.</p>
             </div>
 
-            {/* CTA form */}
-            <form className="w-full land-lg:w-1/2">
-              <div className="flex flex-col land-sm:flex-row justify-center max-w-xs mx-auto land-sm:max-w-md land-lg:max-w-none">
-                <input type="email" className="w-full appearance-none bg-white border border-n-1 focus:border-purple-1 px-4 py-3 mb-2 land-sm:mb-0 land-sm:mr-2 text-n-1 placeholder-n-3" placeholder="Your Email" aria-label="Your Email" />
-                <a className="btn text-purple-1 bg-white hover:bg-purple-3 shadow" href="#0">Subscribe</a>
-              </div>
-              {/* Success message */}
-              {/* <p className="text-center land-lg:text-left land-lg:absolute mt-2 opacity-75 text-sm">Thanks for subscribing!</p> */}
-            </form>
+            {/* CTA actions */}
+            <div className="w-full land-lg:w-auto flex flex-col land-sm:flex-row justify-center land-lg:justify-end gap-2 max-w-xs mx-auto land-sm:max-w-md land-lg:max-w-none">
+              <a className="btn text-purple-1 bg-white hover:bg-purple-3 shadow" href="/Auth/login">Join Now</a>
+              <a className="btn-stroke text-n-1" href="/Auth/login">Sign In</a>
+            </div>
 
           </div>
 
