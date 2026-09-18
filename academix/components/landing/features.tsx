@@ -6,6 +6,7 @@ export default function Features() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-20">
+            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-yellow-1 rounded-full mb-4">Built for final year projects</div>
             <h2 className="h2 mb-4">Everything a final year project needs, in one place</h2>
             <p className="text-xl text-n-3">AcademiX brings students, supervisors, and admins onto a single platform, so nothing falls through the cracks between proposal and final submission.</p>
           </div>
@@ -17,8 +18,8 @@ export default function Features() {
             <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect className="fill-current text-purple-1" width="64" height="64" rx="32" />
-                <path className="stroke-current text-purple-3" d="M30 39.313l-4.18 2.197L27 34.628l-5-4.874 6.91-1.004L32 22.49l3.09 6.26L42 29.754l-3 2.924" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd" />
-                <path className="stroke-current text-purple-3" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
+                <path className="stroke-current text-n-1" d="M30 39.313l-4.18 2.197L27 34.628l-5-4.874 6.91-1.004L32 22.49l3.09 6.26L42 29.754l-3 2.924" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd" />
+                <path className="stroke-current text-n-1" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
               </svg>
               <h4 className="h4 mb-2">Role-based dashboards</h4>
               <p className="text-lg text-n-3 text-center">Students, supervisors, and admins each get a dashboard built around what they actually need to do.</p>
@@ -27,9 +28,9 @@ export default function Features() {
             {/* 2nd item */}
             <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <circle className="fill-current text-purple-1" cx="32" cy="32" r="32" />
-                <path className="stroke-current text-purple-3" strokeWidth="2" strokeLinecap="square" d="M21 23h22v18H21z" fill="none" fillRule="evenodd" />
-                <path className="stroke-current text-purple-3" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
+                <circle className="fill-current text-yellow-1" cx="32" cy="32" r="32" />
+                <path className="stroke-current text-n-1" strokeWidth="2" strokeLinecap="square" d="M21 23h22v18H21z" fill="none" fillRule="evenodd" />
+                <path className="stroke-current text-n-1" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
               </svg>
               <h4 className="h4 mb-2">Milestone timelines</h4>
               <p className="text-lg text-n-3 text-center">A structured timeline from proposal to final review, so everyone can see what's done and what's next.</p>
@@ -38,11 +39,11 @@ export default function Features() {
             {/* 3rd item */}
             <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="200" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <rect className="fill-current text-purple-1" width="64" height="64" rx="32" />
+                <rect className="fill-current text-pink-1" width="64" height="64" rx="32" />
                 <g transform="translate(21 21)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
-                  <ellipse className="stroke-current text-purple-3" cx="11" cy="11" rx="5.5" ry="11" />
-                  <path className="stroke-current text-purple-3" d="M11 0v22M0 11h22" />
-                  <circle className="stroke-current text-purple-3" cx="11" cy="11" r="11" />
+                  <ellipse className="stroke-current text-n-1" cx="11" cy="11" rx="5.5" ry="11" />
+                  <path className="stroke-current text-n-1" d="M11 0v22M0 11h22" />
+                  <circle className="stroke-current text-n-1" cx="11" cy="11" r="11" />
                 </g>
               </svg>
               <h4 className="h4 mb-2">Task boards</h4>
@@ -52,10 +53,10 @@ export default function Features() {
             {/* 4th item */}
             <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="300" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <rect className="fill-current text-purple-1" width="64" height="64" rx="32" />
+                <rect className="fill-current text-green-1" width="64" height="64" rx="32" />
                 <g transform="translate(22 21)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
-                  <path className="stroke-current text-purple-3" d="M17 22v-6.3a8.97 8.97 0 003-6.569A9.1 9.1 0 0011.262 0 9 9 0 002 9v1l-2 5 2 1v4a2 2 0 002 2h4a5 5 0 005-5v-5" />
-                  <circle className="stroke-current text-purple-3" cx="13" cy="9" r="3" />
+                  <path className="stroke-current text-n-1" d="M17 22v-6.3a8.97 8.97 0 003-6.569A9.1 9.1 0 0011.262 0 9 9 0 002 9v1l-2 5 2 1v4a2 2 0 002 2h4a5 5 0 005-5v-5" />
+                  <circle className="stroke-current text-n-1" cx="13" cy="9" r="3" />
                 </g>
               </svg>
               <h4 className="h4 mb-2">File manager</h4>
@@ -67,8 +68,8 @@ export default function Features() {
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect className="fill-current text-purple-1" width="64" height="64" rx="32" />
                 <g strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
-                  <path className="stroke-current text-purple-3" d="M29 42h10.229a2 2 0 001.912-1.412l2.769-9A2 2 0 0042 29h-7v-4c0-2.373-1.251-3.494-2.764-3.86a1.006 1.006 0 00-1.236.979V26l-5 6" />
-                  <path className="stroke-current text-purple-3" d="M22 30h4v12h-4z" />
+                  <path className="stroke-current text-n-1" d="M29 42h10.229a2 2 0 001.912-1.412l2.769-9A2 2 0 0042 29h-7v-4c0-2.373-1.251-3.494-2.764-3.86a1.006 1.006 0 00-1.236.979V26l-5 6" />
+                  <path className="stroke-current text-n-1" d="M22 30h4v12h-4z" />
                 </g>
               </svg>
               <h4 className="h4 mb-2">Built-in inbox</h4>
@@ -78,11 +79,11 @@ export default function Features() {
             {/* 6th item */}
             <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="500" data-aos-anchor="[data-aos-id-blocks]">
               <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <rect className="fill-current text-purple-1" width="64" height="64" rx="32" />
+                <rect className="fill-current text-yellow-1" width="64" height="64" rx="32" />
                 <g transform="translate(21 22)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
-                  <path className="stroke-current text-purple-3" d="M17 2V0M19.121 2.879l1.415-1.415M20 5h2M19.121 7.121l1.415 1.415M17 8v2M14.879 7.121l-1.415 1.415M14 5h-2M14.879 2.879l-1.415-1.415" />
-                  <circle className="stroke-current text-purple-3" cx="17" cy="5" r="3" />
-                  <path className="stroke-current text-purple-3" d="M8.86 1.18C3.8 1.988 0 5.6 0 10c0 5 4.9 9 11 9a10.55 10.55 0 003.1-.4L20 21l-.6-5.2a9.125 9.125 0 001.991-2.948" />
+                  <path className="stroke-current text-n-1" d="M17 2V0M19.121 2.879l1.415-1.415M20 5h2M19.121 7.121l1.415 1.415M17 8v2M14.879 7.121l-1.415 1.415M14 5h-2M14.879 2.879l-1.415-1.415" />
+                  <circle className="stroke-current text-n-1" cx="17" cy="5" r="3" />
+                  <path className="stroke-current text-n-1" d="M8.86 1.18C3.8 1.988 0 5.6 0 10c0 5 4.9 9 11 9a10.55 10.55 0 003.1-.4L20 21l-.6-5.2a9.125 9.125 0 001.991-2.948" />
                 </g>
               </svg>
               <h4 className="h4 mb-2">Calendar & deadlines</h4>
