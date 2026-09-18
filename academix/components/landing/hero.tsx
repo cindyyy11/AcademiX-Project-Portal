@@ -26,7 +26,7 @@ export default function Hero() {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-16">
             <h1 className="h1 mb-4" data-aos="fade-up">AcademiX Project Portal</h1>
-            <p className="text-xl text-n-3 mb-8" data-aos="fade-up" data-aos-delay="200">AcademiX: Empowering Education through Seamless Project Collaboration</p>
+            <p className="text-xl text-n-3 dark:text-white/75 mb-8" data-aos="fade-up" data-aos-delay="200">AcademiX: Empowering Education through Seamless Project Collaboration</p>
             <div className="max-w-xs mx-auto land-sm:max-w-none land-sm:flex land-sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
                 <a className="btn-purple btn-shadow w-full mb-4 land-sm:w-auto land-sm:mb-0" href="/Auth/login">Join Now</a>
@@ -39,7 +39,7 @@ export default function Hero() {
 
           {/* Product preview */}
           <div className="relative flex justify-center" data-aos="fade-up" data-aos-delay="200">
-            <div className="w-full max-w-4xl border border-n-1 shadow-primary-8 overflow-hidden">
+            <div className="w-full max-w-4xl border border-n-1 dark:border-white shadow-primary-8 overflow-hidden">
               <Image src={DashboardPreview} width={1024} height={725} alt="AcademiX project timeline dashboard" className="w-full h-auto" priority />
             </div>
           </div>

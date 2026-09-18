@@ -8,7 +8,7 @@ export default function Features() {
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-20">
             <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-yellow-1 rounded-full mb-4">Built for final year projects</div>
             <h2 className="h2 mb-4">Everything a final year project needs, in one place</h2>
-            <p className="text-xl text-n-3">AcademiX brings students, supervisors, and admins onto a single platform, so nothing falls through the cracks between proposal and final submission.</p>
+            <p className="text-xl text-n-3 dark:text-white/75">AcademiX brings students, supervisors, and admins onto a single platform, so nothing falls through the cracks between proposal and final submission.</p>
           </div>
 
           {/* Items */}
@@ -22,7 +22,7 @@ export default function Features() {
                 <path className="stroke-current text-n-1" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
               </svg>
               <h4 className="h4 mb-2">Role-based dashboards</h4>
-              <p className="text-lg text-n-3 text-center">Students, supervisors, and admins each get a dashboard built around what they actually need to do.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">Students, supervisors, and admins each get a dashboard built around what they actually need to do.</p>
             </div>
 
             {/* 2nd item */}
@@ -33,7 +33,7 @@ export default function Features() {
                 <path className="stroke-current text-n-1" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
               </svg>
               <h4 className="h4 mb-2">Milestone timelines</h4>
-              <p className="text-lg text-n-3 text-center">A structured timeline from proposal to final review, so everyone can see what's done and what's next.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">A structured timeline from proposal to final review, so everyone can see what's done and what's next.</p>
             </div>
 
             {/* 3rd item */}
@@ -47,7 +47,7 @@ export default function Features() {
                 </g>
               </svg>
               <h4 className="h4 mb-2">Task boards</h4>
-              <p className="text-lg text-n-3 text-center">Kanban boards and task lists to assign work, track progress, and keep group projects moving.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">Kanban boards and task lists to assign work, track progress, and keep group projects moving.</p>
             </div>
 
             {/* 4th item */}
@@ -60,7 +60,7 @@ export default function Features() {
                 </g>
               </svg>
               <h4 className="h4 mb-2">File manager</h4>
-              <p className="text-lg text-n-3 text-center">Keep proposals, documentation, and deliverables organized and easy to find in one shared space.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">Keep proposals, documentation, and deliverables organized and easy to find in one shared space.</p>
             </div>
 
             {/* 5th item */}
@@ -73,7 +73,7 @@ export default function Features() {
                 </g>
               </svg>
               <h4 className="h4 mb-2">Built-in inbox</h4>
-              <p className="text-lg text-n-3 text-center">Message your supervisor or teammates directly, without switching to email or another app.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">Message your supervisor or teammates directly, without switching to email or another app.</p>
             </div>
 
             {/* 6th item */}
@@ -87,7 +87,7 @@ export default function Features() {
                 </g>
               </svg>
               <h4 className="h4 mb-2">Calendar & deadlines</h4>
-              <p className="text-lg text-n-3 text-center">Every milestone due date in one calendar, so submission deadlines never sneak up on you.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">Every milestone due date in one calendar, so submission deadlines never sneak up on you.</p>
             </div>
 
           </div>

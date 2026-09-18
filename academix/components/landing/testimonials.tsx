@@ -26,26 +26,26 @@ export default function Testimonials() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
-        <div className="py-12 land-md:py-20 border-t border-n-1">
+        <div className="py-12 land-md:py-20 border-t border-n-1 dark:border-white">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-20">
             <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-pink-1 rounded-full mb-4">Early feedback</div>
             <h2 className="h2 mb-4">Built with students and supervisors in mind</h2>
-            <p className="text-xl text-n-3">Early feedback from the students and supervisors piloting AcademiX on their final year projects.</p>
+            <p className="text-xl text-n-3 dark:text-white/75">Early feedback from the students and supervisors piloting AcademiX on their final year projects.</p>
           </div>
 
           {/* Testimonials */}
           <div className="max-w-sm mx-auto grid gap-8 land-lg:grid-cols-3 land-lg:gap-6 items-start land-lg:max-w-none">
 
             {testimonials.map((testimonial) => (
-              <div key={testimonial.name} className="flex flex-col h-full p-6 bg-white border border-n-1 shadow-primary-4" data-aos="fade-up">
+              <div key={testimonial.name} className="flex flex-col h-full p-6 bg-white border border-n-1 shadow-primary-4 dark:bg-n-1 dark:border-white" data-aos="fade-up">
                 <div className={`flex items-center justify-center w-12 h-12 mb-4 rounded-full ${testimonial.color} text-n-1 font-bold`}>
                   {testimonial.initials}
                 </div>
-                <blockquote className="text-lg text-n-3 grow">{testimonial.quote}</blockquote>
-                <div className="text-n-3 font-medium mt-6 pt-5 border-t border-n-1">
-                  <cite className="text-n-1 not-italic">{testimonial.name}</cite> - {testimonial.role}
+                <blockquote className="text-lg text-n-3 dark:text-white/75 grow">{testimonial.quote}</blockquote>
+                <div className="text-n-3 dark:text-white/75 font-medium mt-6 pt-5 border-t border-n-1 dark:border-white">
+                  <cite className="text-n-1 dark:text-white not-italic">{testimonial.name}</cite> - {testimonial.role}
                 </div>
               </div>
             ))}

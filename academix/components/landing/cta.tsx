@@ -4,7 +4,7 @@ export default function Cta() {
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
 
         {/* CTA box */}
-        <div className="relative bg-purple-1 py-10 px-8 land-md:py-16 land-md:px-12 border border-n-1 shadow-primary-6" data-aos="fade-up">
+        <div className="relative bg-purple-1 py-10 px-8 land-md:py-16 land-md:px-12 border border-n-1 dark:border-white shadow-primary-6" data-aos="fade-up">
 
           {/* Background illustration */}
           <div className="absolute right-0 top-0 -ml-40 pointer-events-none" aria-hidden="true">

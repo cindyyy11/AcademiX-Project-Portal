@@ -17,7 +17,7 @@ export default function Footer() {
                   <img src="/images/AcademiX_Logo.png" alt="AcademiX Logo" style={{ width: "130px" }} />
                 </Link>
               </div>
-              <div className="text-n-3">Welcome to AcademiX, where education meets efficient project management. Our platform streamlines academic projects with intuitive tools that empower collaboration, organization, and innovation. Join us in shaping the future of education through seamless project coordination.</div>
+              <div className="text-n-3 dark:text-white/75">Welcome to AcademiX, where education meets efficient project management. Our platform streamlines academic projects with intuitive tools that empower collaboration, organization, and innovation. Join us in shaping the future of education through seamless project coordination.</div>
             </div>
 
             {/* 2nd and 3rd blocks */}
@@ -25,26 +25,26 @@ export default function Footer() {
 
               {/* 2nd block */}
               <div className="text-sm">
-                <h6 className="text-n-1 font-medium mb-1">Product</h6>
+                <h6 className="text-n-1 dark:text-white font-medium mb-1">Product</h6>
                 <ul>
                   <li className="mb-1">
-                    <Link href="/#features" className="text-n-3 hover:text-n-1 transition duration-150 ease-in-out">Features</Link>
+                    <Link href="/#features" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Features</Link>
                   </li>
                   <li className="mb-1">
-                    <Link href="/#how-it-works" className="text-n-3 hover:text-n-1 transition duration-150 ease-in-out">How it works</Link>
+                    <Link href="/#how-it-works" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">How it works</Link>
                   </li>
                 </ul>
               </div>
 
               {/* 3rd block */}
               <div className="text-sm">
-                <h6 className="text-n-1 font-medium mb-1">Get started</h6>
+                <h6 className="text-n-1 dark:text-white font-medium mb-1">Get started</h6>
                 <ul>
                   <li className="mb-1">
-                    <Link href="/signup" className="text-n-3 hover:text-n-1 transition duration-150 ease-in-out">Create an account</Link>
+                    <Link href="/signup" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Create an account</Link>
                   </li>
                   <li className="mb-1">
-                    <Link href="/Auth/login" className="text-n-3 hover:text-n-1 transition duration-150 ease-in-out">Sign in</Link>
+                    <Link href="/Auth/login" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Sign in</Link>
                   </li>
                 </ul>
               </div>
@@ -57,7 +57,7 @@ export default function Footer() {
           <div className="land-md:flex land-md:items-center land-md:justify-between">
 
             {/* Copyrights note */}
-            <div className="text-n-3 text-sm">© {new Date().getFullYear()} AcademiX. All rights reserved.</div>
+            <div className="text-n-3 dark:text-white/75 text-sm">© {new Date().getFullYear()} AcademiX. All rights reserved.</div>
 
           </div>
 
