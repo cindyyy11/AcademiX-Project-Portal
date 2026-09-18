@@ -6,13 +6,13 @@ import FeatImage03 from '@/public/images/ProjectTimeline-4Planning.png'
 
 export default function Zigzag() {
   return (
-    <section id="how-it-works">
+    <section id="how-it-works" className="bg-green-2">
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="py-12 land-md:py-20 border-t border-n-1">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-16">
-            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-green-1 rounded-full mb-4">Achieve impactful milestones
+            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-purple-1 rounded-full mb-4">Achieve impactful milestones
           </div>
             <h1 className="h2 mb-4">One platform, countless possibilities
           </h1>

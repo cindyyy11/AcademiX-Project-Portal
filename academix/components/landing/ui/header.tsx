@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <header className="absolute w-full z-30 bg-background border-b border-n-1">
+    <header className="fixed top-0 inset-x-0 w-full z-30 bg-background border-b border-n-1">
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Site branding */}

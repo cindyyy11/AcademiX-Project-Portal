@@ -1,6 +1,6 @@
 export default function Features() {
   return (
-    <section id="features">
+    <section id="features" className="bg-purple-3">
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="py-12 land-md:py-20">
 
