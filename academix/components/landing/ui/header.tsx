@@ -18,7 +18,7 @@ export default function Header() {
                 <ThemeToggle />
               </li>
               <li>
-                <Link href="/Auth/login" className="btn-purple">
+                <Link href="/Auth/login" className="btn-purple btn-medium">
                   Sign In
                 </Link>
               </li>
