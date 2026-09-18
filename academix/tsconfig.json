@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
-    "types": ["yup"],
+    "types": [
+      "yup"
+    ],
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,17 +23,52 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/templates/*": ["templates/*"],
-      "@/styles/*": ["styles/*"],
-      "@/utils/*": ["utils/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/types/*": ["types/*"],
-      "@/constants/*": ["constants/*"],
-      "@/mocks/*": ["mocks/*"],
-      "@/*": ["./*"]
-    }
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/templates/*": [
+        "templates/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/constants/*": [
+        "constants/*"
+      ],
+      "@/mocks/*": [
+        "mocks/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/projects/Admin/feedback.tsx", "pages/projects/Admin/projectdetails.tsx", "pages/projects/Student/timeline-3proposal.tsx", "pages/landingPage/index.jsx", "pages/landingPage/components/Layout.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "pages/projects/Admin/feedback.tsx",
+    "pages/projects/Admin/projectdetails.tsx",
+    "pages/projects/Student/timeline-3proposal.tsx",
+    "pages/landingPage/index.jsx",
+    "pages/landingPage/components/Layout.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
