@@ -29,7 +29,7 @@ export default function Hero() {
             <p className="text-xl text-n-3 mb-8" data-aos="fade-up" data-aos-delay="200">AcademiX: Empowering Education through Seamless Project Collaboration</p>
             <div className="max-w-xs mx-auto land-sm:max-w-none land-sm:flex land-sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
-                <a className="btn-purple w-full mb-4 land-sm:w-auto land-sm:mb-0" href="/Auth/login">Join Now</a>
+                <a className="btn-purple btn-shadow w-full mb-4 land-sm:w-auto land-sm:mb-0" href="/Auth/login">Join Now</a>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
                 <a className="btn-stroke w-full land-sm:w-auto land-sm:ml-4" href="#features">Learn more</a>

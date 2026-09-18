@@ -24,13 +24,13 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-pink-2">
+    <section>
       <div className="max-w-6xl mx-auto px-4 land-sm:px-6">
         <div className="py-12 land-md:py-20 border-t border-n-1">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 land-md:pb-20">
-            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-green-1 rounded-full mb-4">Early feedback</div>
+            <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-n-1 bg-pink-1 rounded-full mb-4">Early feedback</div>
             <h2 className="h2 mb-4">Built with students and supervisors in mind</h2>
             <p className="text-xl text-n-3">Early feedback from the students and supervisors piloting AcademiX on their final year projects.</p>
           </div>
