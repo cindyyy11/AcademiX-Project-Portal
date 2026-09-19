@@ -42,8 +42,8 @@ const SidebarRaw = ({}: SidebarProps) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 bottom-0 flex flex-col w-[18.75rem] pt-6 px-8 pb-4.5 bg-n-1 overflow-auto scroll-smooth xl:z-30 md:hidden ${
-        visible ? "w-[18.75rem]" : "xl:w-20"
+      className={`fixed top-0 left-0 bottom-0 flex flex-col w-[15rem] pt-6 px-8 pb-4.5 bg-n-1 overflow-auto scroll-smooth xl:z-30 md:hidden ${
+        visible ? "w-[15rem]" : "xl:w-20"
       } ${collapsed ? "xl-up:w-20" : ""}`}
     >
       <div className="flex justify-between items-center h-[1.625rem] mb-11">

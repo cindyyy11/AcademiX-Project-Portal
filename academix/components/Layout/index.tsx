@@ -22,7 +22,7 @@ const Layout = ({ background, back, title, children }: LayoutProps) => {
         <title>AcademiX</title>
       </Head>
       <div
-        className={`relative pl-[18.75rem] xl:pl-20 md:pl-0 md:pb-20 ${
+        className={`relative pl-[15rem] xl:pl-20 md:pl-0 md:pb-20 ${
           collapsed ? "xl-up:pl-20" : ""
         }`}
       >
