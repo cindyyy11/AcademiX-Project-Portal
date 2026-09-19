@@ -46,6 +46,11 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
       "land-2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
+
+      // Dashboard: the complement of `xl` (max-width: 1259px), for styles that
+      // only apply when the sidebar is at full desktop width.
+      "xl-up": "1260px",
+      // => @media (min-width: 1260px) { ... }
     },
     extend: {
       colors: {

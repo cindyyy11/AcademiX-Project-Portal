@@ -5,6 +5,7 @@ import Icon from "@/components/Icon";
 import Image from "@/components/Image";
 import Create from "./Create";
 import Apps from "./Apps";
+import { useSidebarCollapsed } from "../../hooks/useSidebarCollapsed";
 
 type HeaderProps = {
     back?: boolean;
@@ -14,6 +15,7 @@ type HeaderProps = {
 const Header = ({ back, title }: HeaderProps) => {
     const [headerStyle, setHeaderStyle] = useState<boolean>(false);
     const router = useRouter();
+    const { collapsed } = useSidebarCollapsed();
 
     useScrollPosition(({ currPos }) => {
         setHeaderStyle(currPos.y <= -1);
@@ -25,7 +27,7 @@ const Header = ({ back, title }: HeaderProps) => {
                 headerStyle
                     ? "bg-background dark:bg-n-2 md:!bg-transparent"
                     : ""
-            }`}
+            } ${collapsed ? "xl-up:left-20" : ""}`}
         >
             <div className="flex items-center max-w-[90rem] m-auto w-full h-18 px-16 2xl:px-8 lg:px-6 md:px-5">
                 {back && (

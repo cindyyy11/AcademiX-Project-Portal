@@ -6,6 +6,7 @@ import Icon from "@/components/Icon";
 import Menu from "./Menu";
 import TeamMembers from "./TeamMembers";
 import axios from "axios";
+import { useSidebarCollapsed } from "../../../hooks/useSidebarCollapsed";
 import {
   useCurrentUser,
   isDemoMode,
@@ -17,6 +18,7 @@ type SidebarProps = {};
 const SidebarRaw = ({}: SidebarProps) => {
   const { data: userData } = useCurrentUser();
   const [visible, setVisible] = useState<boolean>(false);
+  const { collapsed, toggleCollapsed } = useSidebarCollapsed();
 
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
@@ -42,31 +44,49 @@ const SidebarRaw = ({}: SidebarProps) => {
     <div
       className={`fixed top-0 left-0 bottom-0 flex flex-col w-[18.75rem] pt-6 px-8 pb-4.5 bg-n-1 overflow-auto scroll-smooth xl:z-30 md:hidden ${
         visible ? "w-[18.75rem]" : "xl:w-20"
-      }`}
+      } ${collapsed ? "xl-up:w-20" : ""}`}
     >
       <div className="flex justify-between items-center h-[1.625rem] mb-11">
-        <Logo className={visible ? "flex" : "xl:hidden"} light />
-        <button className="hidden xl:flex" onClick={() => setVisible(!visible)}>
+        <Logo
+          className={`${visible ? "flex" : "xl:hidden"} ${
+            collapsed ? "xl-up:hidden" : ""
+          }`}
+          light
+        />
+        <button
+          className="hidden xl:flex"
+          aria-label={visible ? "Collapse navigation" : "Expand navigation"}
+          aria-expanded={visible}
+          onClick={() => setVisible(!visible)}
+        >
           <Icon className="fill-white" name={visible ? "close" : "burger"} />
         </button>
+        <button
+          className="flex xl:hidden"
+          aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
+          aria-expanded={!collapsed}
+          onClick={toggleCollapsed}
+        >
+          <Icon className="fill-white" name={collapsed ? "burger" : "close"} />
+        </button>
       </div>
-      <Menu visible={visible} />
+      <Menu visible={visible} collapsed={collapsed} />
       {/* <TeamMembers visible={visible} /> */}
       <div
         className={`flex items-center h-18 mt-auto mx-0 pt-10 ${
           visible ? "mx-0" : "xl:-mx-4"
-        }`}
+        } ${collapsed ? "xl-up:-mx-4" : ""}`}
       >
         <Link
           className={`inline-flex items-center font-bold text-white text-sm transition-colors hover:text-purple-1 ${
             visible ? "mx-0 text-sm" : "xl:mx-auto xl:text-0"
-          }`}
+          } ${collapsed ? "xl-up:mx-auto xl-up:text-0" : ""}`}
           href="/profile/settings"
         >
           <div
             className={`relative w-5.5 h-5.5 mr-2.5 rounded-full overflow-hidden ${
               visible ? "mr-2.5" : "xl:mr-0"
-            }`}
+            } ${collapsed ? "xl-up:mr-0" : ""}`}
           >
             <Image
               className="object-cover scale-105"

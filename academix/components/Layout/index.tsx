@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Menu from "./Menu";
+import { useSidebarCollapsed } from "../../hooks/useSidebarCollapsed";
 
 type LayoutProps = {
   background?: boolean;
@@ -13,12 +14,18 @@ type LayoutProps = {
 };
 
 const Layout = ({ background, back, title, children }: LayoutProps) => {
+  const { collapsed } = useSidebarCollapsed();
+
   return (
     <>
       <Head>
         <title>AcademiX</title>
       </Head>
-      <div className="relative pl-[18.75rem] xl:pl-20 md:pl-0 md:pb-20">
+      <div
+        className={`relative pl-[18.75rem] xl:pl-20 md:pl-0 md:pb-20 ${
+          collapsed ? "xl-up:pl-20" : ""
+        }`}
+      >
         <Sidebar />
         <div className="flex flex-col min-h-screen pt-18 md:pt-0 md:min-h-[calc(100vh-5rem)]">
           <Header back={back} title={title} />
