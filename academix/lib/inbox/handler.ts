@@ -48,11 +48,11 @@ export const inboxHandler =
     } catch (e: any) {
       if (e instanceof HttpError) return res.status(e.status).json({ message: e.message });
       console.error("[inbox]", e);
-      const notConfigured = e?.message === "MONGODB_URI is not set";
-      return res.status(500).json({
-        message: notConfigured
-          ? "Messaging is not configured (set MONGODB_URI)"
-          : "Messaging is temporarily unavailable",
-      });
+      if (e?.message === "MONGODB_URI is not set") {
+        return res
+          .status(503)
+          .json({ code: "not_configured", message: "Messaging is not configured (set MONGODB_URI)" });
+      }
+      return res.status(500).json({ message: "Messaging is temporarily unavailable" });
     }
   };

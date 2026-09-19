@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { isDemoMode } from "../../redux/features/api/apiSlice";
 import { Chat, Me, Message, inboxFetch } from "./api";
+import { demoFetch } from "./demoStore";
 
 const MESSAGE_POLL_MS = 3000;
 const CHAT_POLL_MS = 8000;
@@ -35,24 +37,33 @@ export const useInbox = (me: Me) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [sending, setSending] = useState(false);
+  // Demo mode, or a server with no database yet, runs on the browser-only store.
+  const [demo, setDemo] = useState(() => isDemoMode());
+
+  const api = <T>(path: string, options?: { method?: "GET" | "POST"; body?: unknown }) =>
+    (demo ? demoFetch : inboxFetch)<T>(me, path, options);
 
   useEffect(() => {
     let cancelled = false;
-    inboxFetch(me, "users", { method: "POST" })
+    api("users", { method: "POST" })
       .then(() => !cancelled && setReady(true))
-      .catch((e) => !cancelled && setError(e.message));
+      .catch((e) => {
+        if (cancelled) return;
+        if (e.code === "not_configured") setDemo(true);
+        else setError(e.message);
+      });
     return () => {
       cancelled = true;
     };
-  }, [me.email, me.name]);
+  }, [me.email, me.name, demo]);
 
-  const loadChats = useCallback(async () => {
+  const loadChats = async () => {
     try {
-      setChats(await inboxFetch<Chat[]>(me, "chats"));
+      setChats(await api<Chat[]>("chats"));
     } catch (e: any) {
       setError(e.message);
     }
-  }, [me.email, me.name]);
+  };
 
   usePolling(loadChats, CHAT_POLL_MS, ready);
 
@@ -75,7 +86,7 @@ export const useInbox = (me: Me) => {
         ? `&after=${encodeURIComponent(new Date(new Date(last.createdAt).getTime() - OVERLAP_MS).toISOString())}`
         : "";
       try {
-        const incoming = await inboxFetch<Message[]>(me, `messages?chatId=${chatId}${after}`);
+        const incoming = await api<Message[]>(`messages?chatId=${chatId}${after}`);
         if (activeIdRef.current === chatId) setMessages((current) => mergeMessages(current, incoming));
       } catch (e: any) {
         setError(e.message);
@@ -91,7 +102,7 @@ export const useInbox = (me: Me) => {
     if (!chatId) return false;
     setSending(true);
     try {
-      const message = await inboxFetch<Message>(me, "messages", { method: "POST", body: { chatId, text } });
+      const message = await api<Message>("messages", { method: "POST", body: { chatId, text } });
       if (activeIdRef.current === chatId) setMessages((current) => mergeMessages(current, [message]));
       setError("");
       loadChats();
@@ -105,13 +116,13 @@ export const useInbox = (me: Me) => {
   };
 
   const createChat = async (emails: string[], name: string) => {
-    const chat = await inboxFetch<Chat>(me, "chats", { method: "POST", body: { emails, name } });
+    const chat = await api<Chat>("chats", { method: "POST", body: { emails, name } });
     setChats((current) => [chat, ...current.filter((c) => c._id !== chat._id)]);
     selectChat(chat._id);
     return chat;
   };
 
-  const searchUsers = (q: string) => inboxFetch<{ email: string; name: string }[]>(me, `users?q=${encodeURIComponent(q)}`);
+  const searchUsers = (q: string) => api<{ email: string; name: string }[]>(`users?q=${encodeURIComponent(q)}`);
 
-  return { ready, error, setError, chats, activeId, selectChat, messages, send, sending, createChat, searchUsers };
+  return { ready, demo, error, setError, chats, activeId, selectChat, messages, send, sending, createChat, searchUsers };
 };

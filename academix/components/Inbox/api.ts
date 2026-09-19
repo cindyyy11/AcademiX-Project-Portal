@@ -42,6 +42,6 @@ export const inboxFetch = async <T>(
   });
 
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.message || "Something went wrong");
+  if (!res.ok) throw Object.assign(new Error(data.message || "Something went wrong"), { code: data.code as string | undefined });
   return data as T;
 };

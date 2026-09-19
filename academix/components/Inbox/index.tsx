@@ -66,6 +66,12 @@ const InboxApp = ({ me }: { me: Me }) => {
           </button>
         </div>
 
+        {inbox.demo && (
+          <p className="px-4 py-2 text-xs bg-purple-3 text-n-1 dark:bg-white/10 dark:text-white">
+            Demo messaging: replies are simulated and saved only in this browser.
+          </p>
+        )}
+
         {creating && (
           <NewChat
             onSearch={inbox.searchUsers}
