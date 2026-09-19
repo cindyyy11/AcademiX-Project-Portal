@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-n-1 dark:bg-n-2 dark:text-white">
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='dark'||s==='light')?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+            __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='dark'||s==='light')?s:'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
         />
         <div className="flex flex-col min-h-screen overflow-hidden">

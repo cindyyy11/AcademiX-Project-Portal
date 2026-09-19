@@ -190,7 +190,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const validateEmail = (value: string) => {
     if (!value) {

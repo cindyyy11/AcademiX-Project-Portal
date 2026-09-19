@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Image from "@/components/Image";
 import Icon from "@/components/Icon";
 import Actions from "./Actions/Index";
-import { useLoadUserQuery } from "../../redux/features/api/apiSlice";
+import { useCurrentUser } from "../../redux/features/api/apiSlice";
 
 type ProfileProps = {
   actions?: boolean;
 };
 
 const Profile = ({ actions }: ProfileProps) => {
-  const { data: userData } = useLoadUserQuery({});
+  const { data: userData } = useCurrentUser();
   const list = [
     {
       title: "New tasks",

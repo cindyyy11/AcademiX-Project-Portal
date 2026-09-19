@@ -48,10 +48,6 @@ export default function Document() {
                 <meta name="twitter:site" content="@academiX" />
                 <meta name="twitter:creator" content="@academiX" />
                 <meta property="fb:admins" content="your_facebook_id" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1, maximum-scale=1"
-                />
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
             </Head>

@@ -4,7 +4,7 @@ import Icon from "@/components/Icon";
 
 import { navigation } from "@/constants/navigation";
 import { twMerge } from "tailwind-merge";
-import { useLoadUserQuery } from "../../../../redux/features/api/apiSlice";
+import { useCurrentUser } from "../../../../redux/features/api/apiSlice";
 
 type MenuProps = {
   visible?: boolean;
@@ -12,7 +12,7 @@ type MenuProps = {
 
 const Menu = ({ visible }: MenuProps) => {
   const router = useRouter();
-  const { data: userData } = useLoadUserQuery({});
+  const { data: userData } = useCurrentUser();
 
   // Use user role to determine navigation links
   const userNavigation = userData?.user ? navigation(userData.user.role) : [];

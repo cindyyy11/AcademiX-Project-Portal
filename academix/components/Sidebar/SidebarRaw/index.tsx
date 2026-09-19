@@ -6,17 +6,26 @@ import Icon from "@/components/Icon";
 import Menu from "./Menu";
 import TeamMembers from "./TeamMembers";
 import axios from "axios";
-import { useLoadUserQuery } from "../../../redux/features/api/apiSlice";
+import {
+  useCurrentUser,
+  isDemoMode,
+  exitDemoMode,
+} from "../../../redux/features/api/apiSlice";
 
 type SidebarProps = {};
 
 const SidebarRaw = ({}: SidebarProps) => {
-  const { data: userData } = useLoadUserQuery({});
+  const { data: userData } = useCurrentUser();
   const [visible, setVisible] = useState<boolean>(false);
 
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   const handleLogout = async () => {
+    if (isDemoMode()) {
+      exitDemoMode();
+      window.location.href = "/";
+      return;
+    }
     try {
       await axios.get("http://localhost:8000/api/v1/logout");
       window.location.href = "/";

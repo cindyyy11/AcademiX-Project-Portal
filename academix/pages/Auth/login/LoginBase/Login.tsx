@@ -6,6 +6,7 @@ import { useLoginMutation } from "../../../../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { enterDemoMode } from "../../../../redux/features/api/apiSlice";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -46,6 +47,12 @@ const Login: FC = () => {
   }, [error]);
 
   const { handleSubmit, handleChange, values, errors, touched } = formik;
+
+  const handleDemoLogin = () => {
+    enterDemoMode();
+    toast.success("Signed in with the demo account!");
+    router.push("/dashboard/Student/projects");
+  };
 
   return (
     <div className="flex w-full justify-center py-3 bg-white pt-15">
@@ -140,6 +147,15 @@ const Login: FC = () => {
                 value="Login"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               />
+            </div>
+            <div className="w-full mt-3">
+              <button
+                type="button"
+                onClick={handleDemoLogin}
+                className="flex w-full justify-center rounded-md border border-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-white/10"
+              >
+                Continue with Demo Account
+              </button>
             </div>
             <br />
             <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">

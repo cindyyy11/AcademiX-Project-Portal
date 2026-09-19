@@ -1,10 +1,10 @@
 import React from "react";
-import { useLoadUserQuery } from "../../redux/features/api/apiSlice";
+import { useCurrentUser } from "../../redux/features/api/apiSlice";
 import Profile from "@/components/Profile/Index";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 const ProfilePage = () => {
-  const { data: userData, isLoading, isError } = useLoadUserQuery({}); // Pass an empty object as an argument
+  const { data: userData, isLoading, isError } = useCurrentUser();
 
   if (isLoading) {
     return <LoadingSpinner />;
