@@ -1,4 +1,5 @@
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { useCurrentUser } from "../../redux/features/api/apiSlice";
 import { Chat, Me, chatTitle } from "./api";
 import { useInbox } from "./useInbox";
@@ -39,6 +40,16 @@ const InboxApp = ({ me }: { me: Me }) => {
     const el = scroller.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages.length, activeId]);
+
+  // Header notifications link here with ?chat=<id>. Open it once the chat list
+  // has loaded, then drop the param so the same link works again later.
+  const router = useRouter();
+  const wanted = typeof router.query.chat === "string" ? router.query.chat : null;
+  useEffect(() => {
+    if (!wanted || !chats.length) return;
+    if (chats.some((c) => c._id === wanted)) inbox.selectChat(wanted);
+    router.replace("/inbox", undefined, { shallow: true });
+  }, [wanted, chats.length]);
 
   const submit = async (e?: { preventDefault(): void }) => {
     e?.preventDefault();

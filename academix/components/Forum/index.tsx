@@ -1,19 +1,11 @@
 import { KeyboardEvent, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { useCurrentUser } from "../../redux/features/api/apiSlice";
-import { CATEGORIES, Category, LIMITS, Me, Thread, canDelete } from "./api";
+import { CATEGORIES, Category, LIMITS, Me, Thread, canDelete, timeAgo } from "./api";
 import { useForum } from "./useForum";
 import NewThread from "./NewThread";
 
 const shell = "card flex flex-col min-h-[28rem] overflow-hidden text-n-1 dark:text-white";
-
-const timeAgo = (iso: string) => {
-  const minutes = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60_000));
-  if (minutes < 1) return "just now";
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return new Date(iso).toLocaleDateString([], { month: "short", day: "numeric" });
-};
 
 const Notice = ({ children }: { children: React.ReactNode }) => (
   <div className={`${shell} items-center justify-center p-8 text-center`}>{children}</div>
@@ -77,6 +69,16 @@ const ForumApp = ({ me }: { me: Me }) => {
 
   // Each thread starts with a fresh reply box.
   useEffect(() => setDraft(""), [activeId]);
+
+  // Header search links here with ?thread=<id>. Open it once the list has
+  // loaded, then drop the param so searching for the same thread again works.
+  const router = useRouter();
+  const wanted = typeof router.query.thread === "string" ? router.query.thread : null;
+  useEffect(() => {
+    if (!wanted || !forum.ready) return;
+    if (threads.some((t) => t._id === wanted)) forum.openThread(wanted);
+    router.replace("/forum", undefined, { shallow: true });
+  }, [wanted, forum.ready]);
 
   const submit = async (e?: { preventDefault(): void }) => {
     e?.preventDefault();
