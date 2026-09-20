@@ -4,12 +4,14 @@ export const app = express();
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { ErrorMiddleware } from "./middleware/error";
+import { allowedOrigins } from "./utils/origins";
 import userRouter from "./routes/user.route";
 import courseRouter from "./routes/course.route";
 import orderRouter from "./routes/order.route";
 import notificationRouter from "./routes/notification.route";
 import analyticsRouter from "./routes/analytics.route";
 import layoutRouter from "./routes/layout.route";
+import realtimeRouter from "./routes/realtime.route";
 import { rateLimit } from 'express-rate-limit'
 
 //project-timeline
@@ -34,7 +36,7 @@ app.use(cookieParser());
 // cors => cross origin resource sharing
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: allowedOrigins(),
     credentials: true,
   })
 );
@@ -66,7 +68,8 @@ app.use(
   
   notificationRouter,
   analyticsRouter,
-  layoutRouter
+  layoutRouter,
+  realtimeRouter
 );
 
 // testing api

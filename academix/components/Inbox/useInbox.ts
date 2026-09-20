@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { isDemoMode } from "../../redux/features/api/apiSlice";
 import { Chat, Me, Message, inboxFetch } from "./api";
 import { demoFetch } from "./demoStore";
+import { useActivity } from "../Realtime/useActivity";
 
 const MESSAGE_POLL_MS = 3000;
 const CHAT_POLL_MS = 8000;
@@ -77,25 +78,28 @@ export const useInbox = (me: Me) => {
     setActiveId(id);
   };
 
-  usePolling(
-    async () => {
-      const chatId = activeId;
-      if (!chatId) return;
-      const last = messagesRef.current[messagesRef.current.length - 1];
-      const after = last
-        ? `&after=${encodeURIComponent(new Date(new Date(last.createdAt).getTime() - OVERLAP_MS).toISOString())}`
-        : "";
-      try {
-        const incoming = await api<Message[]>(`messages?chatId=${chatId}${after}`);
-        if (activeIdRef.current === chatId) setMessages((current) => mergeMessages(current, incoming));
-      } catch (e: any) {
-        setError(e.message);
-      }
-    },
-    MESSAGE_POLL_MS,
-    ready && !!activeId,
-    activeId
-  );
+  const loadMessages = async () => {
+    const chatId = activeId;
+    if (!chatId) return;
+    const last = messagesRef.current[messagesRef.current.length - 1];
+    const after = last
+      ? `&after=${encodeURIComponent(new Date(new Date(last.createdAt).getTime() - OVERLAP_MS).toISOString())}`
+      : "";
+    try {
+      const incoming = await api<Message[]>(`messages?chatId=${chatId}${after}`);
+      if (activeIdRef.current === chatId) setMessages((current) => mergeMessages(current, incoming));
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  usePolling(loadMessages, MESSAGE_POLL_MS, ready && !!activeId, activeId);
+
+  // The server pings us when someone messages us: refetch now, not on the next poll.
+  useActivity(() => {
+    loadChats();
+    loadMessages();
+  }, ready && !demo);
 
   const send = async (text: string) => {
     const chatId = activeId;

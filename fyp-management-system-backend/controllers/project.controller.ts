@@ -9,6 +9,12 @@ import SuggestedResourcesModel from "../models/suggestedResources.model";
 import ProposalModel from "../models/proposal.model";
 import FinalDocumentationModel from "../models/finalDocumentation.model";
 import GradeModel from "../models/grade.model";
+import { IUser } from "../models/user.model";
+
+// supervisorId once populated with "name email" (see the populate calls below)
+type PopulatedSupervisor = {
+  supervisorId: Pick<IUser, "_id" | "name" | "email">;
+};
 
 // upload project details
 export const uploadProjectDetails = CatchAsyncError(
@@ -98,7 +104,7 @@ export const getSingleProject = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const project = await ProjectDetailsModel.findById(req.params.id)
-        .populate("supervisorId", "name email") // Populate supervisorId with fields 'name' and 'email' from User model
+        .populate<PopulatedSupervisor>("supervisorId", "name email") // Populate supervisorId with fields 'name' and 'email' from User model
         .exec();
 
       if (!project) {
@@ -141,7 +147,7 @@ export const getAllProjects = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const projects = await ProjectDetailsModel.find()
-        .populate("supervisorId", "name email") // Optionally populate supervisorId with fields 'name' and 'email' from User model
+        .populate<PopulatedSupervisor>("supervisorId", "name email") // Optionally populate supervisorId with fields 'name' and 'email' from User model
         .exec();
 
       const projectDetails = projects.map((project) => ({

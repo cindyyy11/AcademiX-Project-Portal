@@ -133,6 +133,7 @@ export interface IUser extends Document {
   followers: number;
   projects: mongoose.Types.ObjectId[];
   tasks: mongoose.Types.ObjectId[];
+  courses: mongoose.Types.ObjectId[];
   comparePassword: (password: string) => Promise<boolean>;
   SignAccessToken: () => string;
   SignRefreshToken: () => string;
@@ -210,6 +211,12 @@ const userSchema: Schema<IUser> = new mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Task",
+      },
+    ],
+    courses: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Course",
       },
     ],
   },

@@ -8,35 +8,15 @@ import FinalDocumentationModel from "../models/finalDocumentation.model";
 import GradeModel from "../models/grade.model";
 import ProposalModel from "../models/proposal.model";
 
-interface CaseStudyType {
-  updatedAt: string;
-}
-
-interface ProposalDetailsType {
-  updatedAt: string;
-}
-
-interface ProposalType {
-  proposalDetails: ProposalDetailsType;
-}
-
-interface FinalDocDetailsType {
-  updatedAt: string;
-}
-
-interface FinalDocType {
-  finalDocDetails: FinalDocDetailsType;
-}
-
-interface GradeType {
-  updatedAt: string;
+interface StatusEntry {
+  updatedAt: Date;
 }
 
 interface StatusData {
-  caseStudies: CaseStudyType[];
-  proposals: ProposalDetailsType[];
-  finalDocs: FinalDocDetailsType[];
-  grades: GradeType[];
+  caseStudies: StatusEntry[];
+  proposals: StatusEntry[];
+  finalDocs: StatusEntry[];
+  grades: StatusEntry[];
 }
 
 async function retrieveStatusData(): Promise<StatusData> {
@@ -47,10 +27,10 @@ async function retrieveStatusData(): Promise<StatusData> {
     const grades = await GradeModel.find({});
 
     const statusData: StatusData = {
-      caseStudies: caseStudies.map((cs: CaseStudyType) => ({ updatedAt: cs.updatedAt })),
-      proposals: proposals.map((p: ProposalType) => ({ updatedAt: p.proposalDetails.updatedAt })),
-      finalDocs: finalDocs.map((fd: FinalDocType) => ({ updatedAt: fd.finalDocDetails.updatedAt })),
-      grades: grades.map((g: GradeType) => ({ updatedAt: g.updatedAt })),
+      caseStudies: caseStudies.map((cs) => ({ updatedAt: cs.updatedAt })),
+      proposals: proposals.map((p) => ({ updatedAt: p.updatedAt })),
+      finalDocs: finalDocs.map((fd) => ({ updatedAt: fd.updatedAt })),
+      grades: grades.map((g) => ({ updatedAt: g.updatedAt })),
     };
 
     return statusData;

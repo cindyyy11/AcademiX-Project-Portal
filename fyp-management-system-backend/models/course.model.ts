@@ -32,7 +32,7 @@ interface ICourseData extends Document {
   questions: IComment[];
 }
 
- export interface ICourse extends Document {
+ export interface ICourse extends Document<mongoose.Types.ObjectId> {
   name: string;
   description: string;
   categories: string;

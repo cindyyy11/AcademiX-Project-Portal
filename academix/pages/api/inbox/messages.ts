@@ -1,9 +1,13 @@
 import { InboxChat, InboxMessage, isObjectId } from "@/lib/inbox/db";
 import { HttpError, inboxHandler, type Me } from "@/lib/inbox/handler";
+import { notifyUsers } from "@/lib/realtime/notify";
 
 const requireMemberChat = async (chatId: unknown, me: Me) => {
   if (!isObjectId(chatId)) throw new HttpError(400, "Invalid chat");
-  const chat = (await InboxChat.findOne({ _id: chatId, members: me.email }).lean()) as { _id: unknown } | null;
+  const chat = (await InboxChat.findOne({ _id: chatId, members: me.email }).lean()) as {
+    _id: unknown;
+    members: string[];
+  } | null;
   if (!chat) throw new HttpError(404, "Chat not found");
   return chat;
 };
@@ -49,6 +53,7 @@ export default inboxHandler({
       { _id: chat._id },
       { $set: { lastMessageText: text.slice(0, 120), lastMessageAt: message.createdAt } }
     );
+    await notifyUsers(chat.members.filter((email) => email !== me.email));
 
     res.status(201);
     return present(message.toObject());

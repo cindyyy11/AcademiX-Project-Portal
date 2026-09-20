@@ -1,10 +1,11 @@
 import { LIMITS, canDelete } from "@/components/Forum/api";
 import { ForumReply, ForumThread, isObjectId } from "@/lib/forum/db";
 import { HttpError, forumHandler } from "@/lib/forum/handler";
+import { notifyUsers } from "@/lib/realtime/notify";
 
 const requireThread = async (threadId: unknown) => {
   if (!isObjectId(threadId)) throw new HttpError(400, "Invalid thread");
-  const thread = (await ForumThread.findById(threadId).lean()) as { _id: unknown } | null;
+  const thread = (await ForumThread.findById(threadId).lean()) as { _id: unknown; authorEmail: string } | null;
   if (!thread) throw new HttpError(404, "Thread not found");
   return thread;
 };
@@ -42,6 +43,10 @@ export default forumHandler({
       { _id: thread._id },
       { $inc: { replyCount: 1 }, $set: { lastActivityAt: reply.createdAt } }
     );
+
+    // The thread's author and everyone already in the conversation.
+    const participants: string[] = await ForumReply.distinct("authorEmail", { thread: thread._id });
+    await notifyUsers([thread.authorEmail, ...participants].filter((email) => email !== me.email));
 
     res.status(201);
     return present(reply.toObject());
