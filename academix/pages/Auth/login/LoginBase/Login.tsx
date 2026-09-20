@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useLoginMutation } from "../../../../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { enterDemoMode } from "../../../../redux/features/api/apiSlice";
@@ -12,7 +13,7 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email!")
     .required("Please enter your email!"),
-  password: Yup.string().required("Please enter``` your password!").min(6),
+  password: Yup.string().required("Please enter your password!").min(6),
 });
 
 const Login: FC = () => {
@@ -55,127 +56,113 @@ const Login: FC = () => {
   };
 
   return (
-    <div className="flex w-full justify-center py-3 bg-white pt-15">
-      <div className="flex min-h-full max-w-lg flex-1 flex-col justify-center px-6 py-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-white px-6 py-6">
+      <div className="w-full max-w-sm">
+        <div className="text-center">
           <img
-            className="mx-auto h-20 w-auto"
+            className="mx-auto h-14 w-auto"
             src="/inboxImage/AcademiXProjectPortal-icon.png"
-            alt="Your Company"
+            alt="AcademiX Project Portal"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-4 text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label
-                className="block text-sm font-medium leading-6 text-gray-900"
-                htmlFor="email"
-              >
-                Enter your Email
-              </label>
+        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              id="email"
+              placeholder="loginmail@gmail.com"
+              className={`${
+                errors.email && touched.email
+                  ? "!border-red-500 focus:!ring-red-500"
+                  : ""
+              } mt-1 w-full h-10 px-3 rounded border border-gray-300 bg-white text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600`}
+            />
+            {errors.email && touched.email && (
+              <span className="mt-1 block text-sm text-red-500">
+                {errors.email}
+              </span>
+            )}
+          </div>
 
-              <div className="mt-2">
-                <input
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  id="email"
-                  placeholder="loginmail@gmail.com"
-                  className={`${
-                    errors.email && touched.email && "border-red-500"
-                  } w-full text-black dark:text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
-                />
-                {errors.email && touched.email && (
-                  <span className="text-red-500 pt-2 block">
-                    {errors.email}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label
-                className="block text-sm font-medium leading-6 text-gray-900"
-                htmlFor="password"
-              >
-                Enter your Password
-              </label>
-              <div className="mt-2 static">
-                <div>
-                  <input
-                    type={!show ? "password" : "text"}
-                    name="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    id="password"
-                    placeholder="password!@%"
-                    className={`${
-                      errors.password && touched.password && "border-red-500"
-                    } w-full text-black dark:text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
-                  />
-                  <div className="relative">
-                    {!show ? (
-                      <AiOutlineEyeInvisible
-                        className="absolute bottom-3 right-2 z-1 cursor-pointer"
-                        size={20}
-                        onClick={() => setShow(true)}
-                      />
-                    ) : (
-                      <AiOutlineEye
-                        className="absolute bottom-3 right-2 z-1 cursor-pointer"
-                        size={20}
-                        onClick={() => setShow(false)}
-                      />
-                    )}
-                    {errors.password && touched.password && (
-                      <span className="text-red-500 pt-2 block">
-                        {errors.password}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full mt-5">
+          <div>
+            <label
+              className="block text-sm font-medium leading-6 text-gray-900"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <div className="relative mt-1">
               <input
-                type="submit"
-                value="Login"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type={!show ? "password" : "text"}
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                id="password"
+                placeholder="Enter your password"
+                className={`${
+                  errors.password && touched.password
+                    ? "!border-red-500 focus:!ring-red-500"
+                    : ""
+                } pr-10 w-full h-10 px-3 rounded border border-gray-300 bg-white text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600`}
               />
-            </div>
-            <div className="w-full mt-3">
               <button
                 type="button"
-                onClick={handleDemoLogin}
-                className="flex w-full justify-center rounded-md border border-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-white/10"
+                aria-label={show ? "Hide password" : "Show password"}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-900"
+                onClick={() => setShow(!show)}
               >
-                Continue with Demo Account
+                {show ? (
+                  <AiOutlineEye size={20} />
+                ) : (
+                  <AiOutlineEyeInvisible size={20} />
+                )}
               </button>
             </div>
-            <br />
-            <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">
-              Or join with
-            </h5>
-            <div className="flex items-center justify-center my-3">
-              {/* Social login icons */}
-            </div>
-            <h5 className="text-center pt-4 font-Poppins text-[14px]">
-              Dont have an account?{" "}
-              <span
-                className="text-[#2190ff] pl-1 cursor-pointer"
-                onClick={() => router.push("/Auth/signup")}
-              >
-                Sign up
+            {errors.password && touched.password && (
+              <span className="mt-1 block text-sm text-red-500">
+                {errors.password}
               </span>
-            </h5>
-          </form>
-        </div>
-        <br />
+            )}
+          </div>
+
+          <div className="space-y-3 pt-2">
+            <input
+              type="submit"
+              value="Login"
+              className="flex w-full cursor-pointer justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            />
+            <button
+              type="button"
+              onClick={handleDemoLogin}
+              className="flex w-full justify-center rounded-md border border-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-indigo-600 hover:bg-indigo-50"
+            >
+              Continue with Demo Account
+            </button>
+          </div>
+
+          <p className="pt-2 text-center text-sm text-gray-600">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/Auth/signup"
+              className="font-semibold text-[#2190ff] hover:underline"
+            >
+              Sign up
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );
