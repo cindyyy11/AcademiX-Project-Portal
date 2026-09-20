@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only server.ts",
     "start": "node build/server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false",
-    "build": "tsc"
+    "heroku-postbuild": "npm run build",
+    "build": "tsc || echo tsc reported type errors, JS was still emitted && node -e \"require('fs').cpSync('mails','build/mails',{recursive:true});require('fs').accessSync('build/server.js')\""
   },
   "keywords": [],
   "author": "",

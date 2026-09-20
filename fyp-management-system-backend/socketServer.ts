@@ -2,6 +2,7 @@ import { Server as SocketIOServer } from "socket.io";
 import http from "http";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { redis } from "./utils/redis";
+import { allowedOrigins } from "./utils/origins";
 
 // Instant updates for the portal. This server carries no data: when something
 // changes for someone (a new message, a reply to their thread) the portal's API
@@ -30,7 +31,7 @@ const emailFromToken = async (token: unknown): Promise<string | null> => {
 export const initSocketServer = (server: http.Server) => {
   io = new SocketIOServer(server, {
     // The same origins the REST API allows (see app.ts).
-    cors: { origin: ["http://localhost:3000"], credentials: true },
+    cors: { origin: allowedOrigins(), credentials: true },
   });
 
   io.use(async (socket, next) => {

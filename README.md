@@ -116,6 +116,18 @@ For instant updates (optional; polling covers you if these are missing):
 - `NOTIFY_SECRET` — set the same value in `academix` and in the core backend. The main app sends it
   when it asks the backend to ping users' browsers, and the backend rejects requests without it.
 
+### Deploying
+
+- **`academix`** — deploy to Vercel with the Root Directory set to `academix`, and set the variables
+  from `academix/.env.example`. `NEXT_PUBLIC_*` values are baked in at build time, so redeploy after
+  changing them.
+- **Core backend** — needs a long-running host (Heroku, Render, Railway, Fly) because of Socket.io.
+  Build with `npm install --include=dev && npm run build`, start with `npm start`, and set every
+  variable from `fyp-management-system-backend/.env.example`. Set `ORIGIN` to the deployed frontend
+  URL (comma-separated for several); it defaults to `http://localhost:3000`, so browsers on any other
+  origin are blocked until it is set.
+- The auth cookies are `SameSite=None; Secure`, so both services must be served over HTTPS.
+
 ### Trying it without a backend
 
 Open the login page and use the demo account. It signs you in as a sample student, and the inbox,
