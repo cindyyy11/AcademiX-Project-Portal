@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import styles from "../../styles/Student_Timeline.module.css";
-import { motion as m } from "framer-motion";
-import Icon from "../Icon";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import Modal from "@/components/Modal";
+import Field from "@/components/Field";
+import Select from "@/components/Select/Index";
+import Icon from "@/components/Icon";
 
 type Supervisor = {
   _id: string;
@@ -14,45 +15,35 @@ type Supervisor = {
   lastSeenDateTime: string;
 };
 
-type ProjectDetails = {
+type ProjectForm = {
   title: string;
+  categories: string;
   about: string;
   objective: string;
-  handOutDate: Date | null;
-  dueDate: Date | null;
-  supervisor: Supervisor | null;
   supervisorId: string;
-  members: [];
-  categories: string; // Add categories field
-  _id?: string; // Make _id optional
+  handOutDate: string;
+  dueDate: string;
 };
-
 
 type Props = {
   onClose: () => void;
 };
 
+const dateInputClass = "dark:[color-scheme:dark]";
+
 const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
+  const [form, setForm] = useState<ProjectForm>({
     title: "",
+    categories: "",
     about: "",
     objective: "",
-    categories: "",
-    handOutDate: null,
-    dueDate: null,
-    supervisor: null,
     supervisorId: "",
-    members: [],
+    handOutDate: "",
+    dueDate: "",
   });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setProjectDetails({ ...projectDetails, [name]: value });
-  };
-
   const [supervisors, setSupervisors] = useState<Supervisor[]>([]);
+  const [error, setError] = useState<string>("");
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSupervisors = async () => {
@@ -61,19 +52,42 @@ const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
           "http://localhost:8000/api/v1/get-supervisors"
         );
         setSupervisors(response.data.supervisors);
-      } catch (error) {
-        console.error("Failed to fetch supervisors", error);
+      } catch (err) {
+        console.error("Failed to fetch supervisors", err);
+        setError("Could not load supervisors. Please try again later.");
       }
     };
 
     fetchSupervisors();
   }, []);
-  console.log("supervisors: ", supervisors);
+
+  const supervisorItems = useMemo(
+    () => supervisors.map((s) => ({ id: s._id, title: s.name })),
+    [supervisors]
+  );
+  const selectedSupervisor =
+    supervisorItems.find((item) => item.id === form.supervisorId) || null;
+
+  const update =
+    (name: keyof ProjectForm) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((prev) => ({ ...prev, [name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
+    if (!form.supervisorId) {
+      setError("Please select a supervisor.");
+      return;
+    }
+    if (form.handOutDate && form.dueDate && form.dueDate < form.handOutDate) {
+      setError("The due date can't be before the handout date.");
+      return;
+    }
+
+    setSubmitting(true);
     try {
-      // Create the project
       const response = await fetch(
         `http://localhost:8000/api/v1/create-project-details`,
         {
@@ -81,7 +95,13 @@ const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(projectDetails),
+          body: JSON.stringify({
+            ...form,
+            handOutDate: form.handOutDate || null,
+            dueDate: form.dueDate || null,
+            supervisor: null,
+            members: [],
+          }),
         }
       );
 
@@ -89,259 +109,118 @@ const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
         throw new Error("Failed to create project details");
       }
 
-      const newProject = await response.json();
-      const projectId = newProject._id; // Assuming the backend returns the project ID
-
-      // Create related content (e.g., case study) with default values
-
-      setProjectDetails(newProject);
       onClose();
-    } catch (error) {
-      alert("Failed to create project details. Please try again.");
-      console.error("Failed to create project details:", error);
+    } catch (err) {
+      console.error("Failed to create project details:", err);
+      setError("Failed to create the project. Please try again.");
+      setSubmitting(false);
     }
   };
 
-  useEffect(() => {
-    const modal = document.getElementById("my_modal_4");
-    if (modal && typeof (modal as any).showModal === "function") {
-      (modal as any).showModal();
-    } else {
-      console.error("Modal or showModal method not available");
-    }
-  }, []);
-
   return (
-    <m.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.75, ease: "easeOut" }}
+    <Modal
+      classWrap="max-w-[46rem] dark:text-white"
+      classButtonClose="top-5"
+      visible
+      onClose={onClose}
     >
-      <dialog id="my_modal_4" className="dui-modal">
-        <div className="dui-modal-box w-2/4 max-w-5xl max-h-11/12">
-          <h3 className="font-bold text-2xl text-center mb-5">
-            <Icon name="plus" className="w-6 h-6" />
-          </h3>
-          <div style={{ maxWidth: "100%", overflowY: "auto" }}>
-            <div className="px-10">
-              <div
-                className={styles.timelineMiddle3}
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <div
-                  className={`${styles.timelineSectionTitle} text-center`}
-                  style={{ paddingBottom: "0", paddingTop: "0" }}
-                >
-                  CREATE PROJECT DETAILS
-                </div>
-                <div
-                  className={`${styles.timelineSectionTitle} text-center`}
-                  style={{ paddingTop: "3px" }}
-                >
-                  <span className="mt-1 text-sm leading-6 text-gray-600 text-center">
-                    This information will be displayed to project members.
-                  </span>
-                </div>
-              </div>
-              <div>
-                <form onSubmit={handleSubmit}>
-                  <div
-                    className="space-y-12 mx-auto px-4"
-                    style={{ width: "100%" }}
-                  >
-                    <div className="border-b border-gray-900/10 pb-12">
-                      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div className="sm:col-span-4">
-                          <h2 className="text-base font-semibold leading-7 text-gray-900">
-                            Project Details
-                          </h2>
-                          <label
-                            htmlFor="title"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Project Title
-                          </label>
-                          <div className="mt-2">
-                            <input
-                              id="title"
-                              name="title"
-                              type="text"
-                              autoComplete="title"
-                              value={projectDetails.title}
-                              onChange={handleChange}
-                              required
-                              placeholder="New Project"
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                          </div>
-                        </div>
-                        <div className="sm:col-span-4">
-                          <label
-                            htmlFor="categories"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Categories
-                          </label>
-                          <div className="mt-2">
-                            <input
-                              id="categories"
-                              name="categories"
-                              type="text"
-                              autoComplete="categories"
-                              value={projectDetails.categories}
-                              onChange={handleChange}
-                              required
-                              placeholder="New Project"
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-span-full">
-                          <label
-                            htmlFor="about"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            About
-                          </label>
-                          <div className="mt-2">
-                            <textarea
-                              id="about"
-                              name="about"
-                              rows={3}
-                              value={projectDetails.about}
-                              onChange={handleChange}
-                              placeholder="It is about..."
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            ></textarea>
-                          </div>
-                          <p className="mt-3 text-sm leading-6 text-gray-600">
-                            Write a few sentences about the project.
-                          </p>
-                        </div>
-                        <div className="col-span-full">
-                          <label
-                            htmlFor="objective"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Objective
-                          </label>
-                          <div className="mt-2">
-                            <textarea
-                              id="objective"
-                              name="objective"
-                              rows={3}
-                              value={projectDetails.objective}
-                              onChange={handleChange}
-                              placeholder="The main purpose is..."
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            ></textarea>
-                          </div>
-                          <p className="mt-3 text-sm leading-6 text-gray-600">
-                            Write the objectives of the project.
-                          </p>
-                        </div>
-                        <div className="sm:col-span-4">
-                          <label htmlFor="supervisorId" className="block text-sm font-medium leading-6 text-gray-900">Supervisor</label><br></br>
-                          <select
-                            id="supervisorId"
-                            name="supervisorId"
-                            value={projectDetails.supervisorId}
-                            onChange={handleChange}
-                            required
-                          >
-                            <option value="">Select a supervisor</option>
-                            {supervisors.map((supervisor) => (
-                              <option
-                                key={supervisor._id}
-                                value={supervisor._id}
-                              >
-                                {supervisor.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="sm:col-span-4">
-                          <label
-                            htmlFor="handOutDate"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Handout Date
-                          </label>
-                          <div className="mt-2">
-                            <input
-                              id="handOutDate"
-                              name="handOutDate"
-                              type="date"
-                              value={
-                                projectDetails.handOutDate
-                                  ? projectDetails.handOutDate
-                                      .toString()
-                                      .slice(0, 10)
-                                  : ""
-                              }
-                              onChange={handleChange}
-                              autoComplete="handOutDate"
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                          </div>
-                        </div>
-                        <div className="sm:col-span-4">
-                          <label
-                            htmlFor="dueDate"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Due Date
-                          </label>
-                          <div className="mt-2">
-                            <input
-                              id="dueDate"
-                              name="dueDate"
-                              type="date"
-                              value={
-                                projectDetails.dueDate
-                                  ? projectDetails.dueDate
-                                      .toString()
-                                      .slice(0, 10)
-                                  : ""
-                              }
-                              onChange={handleChange}
-                              autoComplete="dueDate"
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex items-center justify-end gap-x-6">
-                      <button
-                        type="button"
-                        className="text-sm font-semibold leading-6 text-gray-900"
-                        onClick={onClose}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      >
-                        Save
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <form method="dialog" className="dui-modal-backdrop">
-            <button onClick={onClose}>close</button>
-          </form>
+      <div className="px-5 py-4 pr-14 border-b border-n-1 dark:border-white">
+        <div className="text-h6">Create new project</div>
+        <p className="mt-0.5 text-xs font-bold text-n-3 dark:text-white/50">
+          This information will be displayed to project members. Fields marked
+          * are required.
+        </p>
+      </div>
+      <form className="p-5" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-6 gap-x-4 gap-y-4 md:grid-cols-1">
+          <Field
+            className="col-span-3 md:col-span-1"
+            classInput="h-12"
+            label="Project title *"
+            placeholder="Enter project title"
+            value={form.title}
+            onChange={update("title")}
+            required
+          />
+          <Field
+            className="col-span-3 md:col-span-1"
+            classInput="h-12"
+            label="Categories *"
+            placeholder="e.g. Web Development"
+            value={form.categories}
+            onChange={update("categories")}
+            required
+          />
+          <Field
+            className="col-span-3 md:col-span-1"
+            label="About"
+            placeholder="Write a few sentences about the project"
+            textarea
+            value={form.about}
+            onChange={update("about")}
+          />
+          <Field
+            className="col-span-3 md:col-span-1"
+            label="Objective"
+            placeholder="Write the main objectives of the project"
+            textarea
+            value={form.objective}
+            onChange={update("objective")}
+          />
+          <Select
+            className="col-span-2 md:col-span-1"
+            classButton="h-12"
+            classOptions="max-h-44 overflow-y-auto"
+            label="Supervisor *"
+            placeholder="Select a supervisor"
+            items={supervisorItems}
+            value={selectedSupervisor}
+            onChange={(item: { id: string }) =>
+              setForm((prev) => ({ ...prev, supervisorId: item.id }))
+            }
+          />
+          <Field
+            className="col-span-2 md:col-span-1"
+            classInput={`h-12 px-4 ${dateInputClass}`}
+            label="Handout date"
+            type="date"
+            value={form.handOutDate}
+            onChange={update("handOutDate")}
+          />
+          <Field
+            className="col-span-2 md:col-span-1"
+            classInput={`h-12 px-4 ${dateInputClass}`}
+            label="Due date"
+            type="date"
+            value={form.dueDate}
+            onChange={update("dueDate")}
+          />
         </div>
-      </dialog>
-    </m.div>
+        <div className="flex items-center gap-3 mt-5 pt-5 border-t border-n-1 dark:border-white md:flex-col md:items-stretch">
+          {error && (
+            <div className="flex items-center mr-auto px-3 py-2 border border-pink-1 rounded-sm bg-pink-2 text-xs font-bold text-n-1 md:mr-0">
+              <Icon
+                className="shrink-0 icon-16 mr-2 fill-n-1"
+                name="info-circle"
+              />
+              {error}
+            </div>
+          )}
+          <div className="flex gap-3 ml-auto md:ml-0 md:flex-col-reverse">
+            <button type="button" className="btn-stroke" onClick={onClose}>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="btn-purple btn-shadow disabled:opacity-50 disabled:pointer-events-none"
+              disabled={submitting}
+            >
+              {submitting ? "Creating..." : "Create project"}
+            </button>
+          </div>
+        </div>
+      </form>
+    </Modal>
   );
 };
 
