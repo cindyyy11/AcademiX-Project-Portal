@@ -3,6 +3,7 @@ import { isDemoMode } from "../../redux/features/api/apiSlice";
 import { usePolling } from "../Inbox/useInbox";
 import { Category, Me, Method, Reply, Thread, forumFetch } from "./api";
 import { demoFetch } from "./demoStore";
+import { useActivity } from "../Realtime/useActivity";
 
 const THREAD_POLL_MS = 10000;
 const REPLY_POLL_MS = 5000;
@@ -42,21 +43,24 @@ export const useForum = (me: Me) => {
     setActiveId(id);
   };
 
-  usePolling(
-    async () => {
-      const threadId = activeId;
-      if (!threadId) return;
-      try {
-        const incoming = await api<Reply[]>(`replies?threadId=${threadId}`);
-        if (activeIdRef.current === threadId) setReplies(incoming);
-      } catch (e: any) {
-        setError(e.message);
-      }
-    },
-    REPLY_POLL_MS,
-    ready && !!activeId,
-    activeId
-  );
+  const loadReplies = async () => {
+    const threadId = activeId;
+    if (!threadId) return;
+    try {
+      const incoming = await api<Reply[]>(`replies?threadId=${threadId}`);
+      if (activeIdRef.current === threadId) setReplies(incoming);
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  usePolling(loadReplies, REPLY_POLL_MS, ready && !!activeId, activeId);
+
+  // The server pings us when someone replies to a thread we're in: refetch now.
+  useActivity(() => {
+    loadThreads();
+    loadReplies();
+  }, ready && !demo);
 
   const reply = async (text: string) => {
     const threadId = activeId;

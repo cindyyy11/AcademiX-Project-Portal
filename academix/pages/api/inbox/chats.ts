@@ -1,5 +1,6 @@
 import { InboxChat, InboxUser } from "@/lib/inbox/db";
 import { HttpError, inboxHandler, normalizeEmail } from "@/lib/inbox/handler";
+import { notifyUsers } from "@/lib/realtime/notify";
 
 const MAX_MEMBERS = 20;
 
@@ -43,6 +44,7 @@ export default inboxHandler({
 
     const groupName = typeof name === "string" ? name.trim().slice(0, 60) : "";
     const chat = await InboxChat.create({ members, isGroup, name: isGroup ? groupName || undefined : undefined });
+    await notifyUsers(members.filter((email) => email !== me.email));
     res.status(201);
     return (await present([chat.toObject()]))[0];
   },

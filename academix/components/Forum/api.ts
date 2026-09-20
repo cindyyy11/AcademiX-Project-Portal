@@ -59,7 +59,7 @@ let pending: Promise<string> | null = null;
 const signInError = () =>
   Object.assign(new Error("Please sign in again to use the forum"), { code: "unauthenticated" as string | undefined });
 
-const getToken = async (): Promise<string> => {
+export const getToken = async (): Promise<string> => {
   if (token && token.expires > Date.now()) return token.value;
 
   pending ??= (async () => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { isDemoMode } from "../../redux/features/api/apiSlice";
 import { usePolling } from "../Inbox/useInbox";
+import { useActivity } from "../Realtime/useActivity";
 import { Chat, Message } from "../Inbox/api";
 import { demoFetch as inboxDemo } from "../Inbox/demoStore";
 import { Me, Reply, Thread, forumFetch } from "../Forum/api";
@@ -105,20 +106,20 @@ export const useNotifications = (me: Me | null) => {
     setRead(loadRead(email));
   }, [email]);
 
-  usePolling(
-    async () => {
-      if (!me) return;
-      try {
-        setItems(await loadNotifications(me));
-        setFailed(false);
-      } catch {
-        setFailed(true);
-      }
-    },
-    POLL_MS,
-    !!email,
-    email
-  );
+  const refresh = async () => {
+    if (!me) return;
+    try {
+      setItems(await loadNotifications(me));
+      setFailed(false);
+    } catch {
+      setFailed(true);
+    }
+  };
+
+  usePolling(refresh, POLL_MS, !!email, email);
+
+  // The server pings us when there's new activity for us: refresh the bell now.
+  useActivity(refresh, !!email && !isDemoMode());
 
   const isRead = (n: AppNotification) => n.createdAt <= read.before || read.ids.includes(n.id);
 

@@ -42,8 +42,10 @@ inbox, a discussion forum, search, and notifications.
 - **Tasks & Kanban boards** — per-project task tracking with drag-and-drop boards
 - **Calendar** — deadlines and milestone scheduling
 - **File manager** — upload and organize project documents/deliverables
-- **Inbox** — direct and group chats between students and supervisors, stored in MongoDB and
-  refreshed by polling every few seconds
+- **Inbox** — direct and group chats between students and supervisors, stored in MongoDB
+- **Instant updates** — new messages, replies, and notifications show up straight away when the core
+  backend's Socket.io server is running. It only pings the browser to refetch, and no data goes over
+  the socket. Without it, everything still updates by polling every few seconds
 - **Forum** — in-portal discussion threads with categories (General, Projects, Resources, Q&A) and
   replies. Authors can delete their own posts; admins and supervisors can delete any
 - **Search** — the header search finds portal pages (for your role) and forum threads, with keyboard
@@ -57,7 +59,7 @@ inbox, a discussion forum, search, and notifications.
 
 | Service | Stack |
 | --- | --- |
-| `academix` (main app: UI plus the inbox, forum, and notifications API routes) | Next.js 14, React 18, TypeScript, Chakra UI, Tailwind CSS, Redux Toolkit, MongoDB/Mongoose |
+| `academix` (main app: UI plus the inbox, forum, and notifications API routes) | Next.js 14, React 18, TypeScript, Chakra UI, Tailwind CSS, Redux Toolkit, MongoDB/Mongoose, Socket.io client |
 | `fyp-management-system-backend` (core API) | Node.js, Express, TypeScript, MongoDB/Mongoose, Redis, Socket.io, JWT auth |
 
 ## Project structure
@@ -81,7 +83,7 @@ AcademiX-Project-Portal/
 │   ├── routes/                      #   Express routers, mounted under /api/v1
 │   ├── services/                    #   Business logic used by controllers
 │   ├── middleware/                  #   Auth, error handling, rate limiting
-│   └── socketServer.ts              #   Socket.io server (the inbox, forum, and notifications poll instead)
+│   └── socketServer.ts              #   Socket.io server: pings signed-in users' browsers when they have new activity
 ```
 
 ## Getting started
@@ -107,6 +109,12 @@ For the inbox, forum, and notifications in `academix`:
 - `ACCESS_TOKEN` — must be the same value as `ACCESS_TOKEN` in the core backend. The forum and
   notifications routes use it to verify who is calling.
 - `NEXT_PUBLIC_SERVER_URI` — the core backend's API URL, e.g. `http://localhost:8000/api/v1/`.
+
+For instant updates (optional; polling covers you if these are missing):
+
+- `NEXT_PUBLIC_SOCKET_SERVER_URI` — the core backend's address, e.g. `http://localhost:8000/`.
+- `NOTIFY_SECRET` — set the same value in `academix` and in the core backend. The main app sends it
+  when it asks the backend to ping users' browsers, and the backend rejects requests without it.
 
 ### Trying it without a backend
 
