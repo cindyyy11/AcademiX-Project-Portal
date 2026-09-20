@@ -16,7 +16,7 @@ const mergeMessages = (current: Message[], incoming: Message[]) => {
   return Array.from(byId.values()).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 };
 
-const usePolling = (fn: () => Promise<void>, ms: number, enabled: boolean, key?: unknown) => {
+export const usePolling = (fn: () => Promise<void>, ms: number, enabled: boolean, key?: unknown) => {
   const latest = useRef(fn);
   latest.current = fn;
 

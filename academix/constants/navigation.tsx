@@ -37,7 +37,7 @@ export const navigation = (role: string) => {
         {
           title: "Forum",
           icon: "comments",
-          url: "https://academix.boards.net/",
+          url: "/forum",
         },
       ];
     case "supervisor":
@@ -73,7 +73,7 @@ export const navigation = (role: string) => {
         {
           title: "Forum",
           icon: "comments",
-          url: "https://academix.boards.net/",
+          url: "/forum",
         },
       ];
     case "student":
@@ -109,7 +109,7 @@ export const navigation = (role: string) => {
         {
           title: "Forum",
           icon: "comments",
-          url: "https://academix.boards.net/",
+          url: "/forum",
         },
       ];
     default:
@@ -145,7 +145,7 @@ export const navigation = (role: string) => {
         {
           title: "Forum",
           icon: "comments",
-          url: "https://academix.boards.net/",
+          url: "/forum",
         },
       ];
   }
@@ -176,7 +176,7 @@ export const navigationMobile = [
   {
     title: "Forum",
     icon: "comments",
-    url: "https://academix.boards.net/",
+    url: "/forum",
   },
 
 ];
