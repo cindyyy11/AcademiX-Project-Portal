@@ -1,6 +1,6 @@
 # Repo-wide safety net — catches node_modules and other build/dev artifacts
 # no matter how deeply nested, since each app's own .gitignore only covers
-# its own root (see docs/superpowers/specs/2026-09-07-code-structure-cleanup-design.md).
+# its own root.
 
 # dependencies
 **/node_modules/
