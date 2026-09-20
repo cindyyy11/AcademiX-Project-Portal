@@ -20,9 +20,9 @@ export const normalizeEmail = (v: unknown) => {
 // Identity comes from headers the client sets from the portal session. Nothing
 // here proves the caller owns that email; verify the portal session here if
 // that ever needs to be enforced.
-export const identify = (req: NextApiRequest, feature = "messaging"): Me => {
+const identify = (req: NextApiRequest): Me => {
   const email = normalizeEmail(req.headers["x-user-email"]);
-  if (!email) throw new HttpError(401, `Sign in to use ${feature}`);
+  if (!email) throw new HttpError(401, "Sign in to use messaging");
 
   let name = "";
   try {

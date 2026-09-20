@@ -1,4 +1,14 @@
-export type Me = { email: string; name: string };
+export type Me = { email: string; name: string; role: string };
+// What the server has verified about the person making a request.
+export type Caller = Me;
+
+// Admins and supervisors moderate: they can delete anyone's posts. Everyone
+// else can delete only their own. The server enforces this; the UI uses the
+// same rule to decide which Delete buttons to show.
+export const MODERATOR_ROLES = ["admin", "supervisor"];
+export const isModerator = (me: { role: string }) => MODERATOR_ROLES.includes(me.role);
+export const canDelete = (me: Me, authorEmail: string) =>
+  isModerator(me) || me.email.toLowerCase() === authorEmail.toLowerCase();
 
 export const CATEGORIES = ["General", "Projects", "Resources", "Q&A"] as const;
 export type Category = (typeof CATEGORIES)[number];
@@ -27,20 +37,54 @@ export type Reply = {
 
 export const isCategory = (v: unknown): v is Category => CATEGORIES.includes(v as Category);
 
+export type Method = "GET" | "POST" | "DELETE";
+
+// The forum server needs proof of who is calling. The portal's login is an
+// httpOnly cookie on the core backend, so ask the backend's /refresh for a
+// short-lived access token and send that along. Cached until just before it
+// expires (tokens last 5 minutes).
+const TOKEN_TTL_MS = 4 * 60_000;
+let token: { value: string; expires: number } | null = null;
+let pending: Promise<string> | null = null;
+
+const signInError = () =>
+  Object.assign(new Error("Please sign in again to use the forum"), { code: "unauthenticated" as string | undefined });
+
+const getToken = async (): Promise<string> => {
+  if (token && token.expires > Date.now()) return token.value;
+
+  pending ??= (async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}refresh`, { credentials: "include" });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || typeof data.accessToken !== "string") throw signInError();
+      token = { value: data.accessToken, expires: Date.now() + TOKEN_TTL_MS };
+      return token.value;
+    } finally {
+      pending = null;
+    }
+  })();
+  return pending;
+};
+
 export const forumFetch = async <T>(
-  me: Me,
+  _me: Me,
   path: string,
-  options: { method?: "GET" | "POST"; body?: unknown } = {}
+  options: { method?: Method; body?: unknown } = {}
 ): Promise<T> => {
-  const res = await fetch(`/api/forum/${path}`, {
-    method: options.method ?? "GET",
-    headers: {
-      "content-type": "application/json",
-      "x-user-email": me.email,
-      "x-user-name": encodeURIComponent(me.name),
-    },
-    body: options.body === undefined ? undefined : JSON.stringify(options.body),
-  });
+  const send = async () =>
+    fetch(`/api/forum/${path}`, {
+      method: options.method ?? "GET",
+      headers: { "content-type": "application/json", authorization: `Bearer ${await getToken()}` },
+      body: options.body === undefined ? undefined : JSON.stringify(options.body),
+    });
+
+  let res = await send();
+  if (res.status === 401) {
+    // The token may have expired since we cached it; get a fresh one and retry once.
+    token = null;
+    res = await send();
+  }
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw Object.assign(new Error(data.message || "Something went wrong"), { code: data.code as string | undefined });

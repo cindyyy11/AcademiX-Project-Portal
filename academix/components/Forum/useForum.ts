@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { isDemoMode } from "../../redux/features/api/apiSlice";
 import { usePolling } from "../Inbox/useInbox";
-import { Category, Me, Reply, Thread, forumFetch } from "./api";
+import { Category, Me, Method, Reply, Thread, forumFetch } from "./api";
 import { demoFetch } from "./demoStore";
 
 const THREAD_POLL_MS = 10000;
@@ -17,7 +17,7 @@ export const useForum = (me: Me) => {
   // Demo mode, or a server with no database yet, runs on the browser-only store.
   const [demo, setDemo] = useState(() => isDemoMode());
 
-  const api = <T>(path: string, options?: { method?: "GET" | "POST"; body?: unknown }) =>
+  const api = <T>(path: string, options?: { method?: Method; body?: unknown }) =>
     (demo ? demoFetch : forumFetch)<T>(me, path, options);
 
   const loadThreads = async () => {
@@ -86,5 +86,27 @@ export const useForum = (me: Me) => {
     return thread;
   };
 
-  return { ready, demo, error, threads, activeId, openThread, replies, busy, reply, createThread };
+  const deleteThread = async (id: string) => {
+    try {
+      await api(`threads?id=${encodeURIComponent(id)}`, { method: "DELETE" });
+      setThreads((current) => current.filter((t) => t._id !== id));
+      if (activeIdRef.current === id) openThread(null);
+      setError("");
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  const deleteReply = async (id: string) => {
+    try {
+      await api(`replies?id=${encodeURIComponent(id)}`, { method: "DELETE" });
+      setReplies((current) => current.filter((r) => r._id !== id));
+      setError("");
+      loadThreads();
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  return { ready, demo, error, threads, activeId, openThread, replies, busy, reply, createThread, deleteThread, deleteReply };
 };

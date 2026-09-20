@@ -1,4 +1,4 @@
-import { LIMITS } from "@/components/Forum/api";
+import { LIMITS, canDelete } from "@/components/Forum/api";
 import { ForumReply, ForumThread, isObjectId } from "@/lib/forum/db";
 import { HttpError, forumHandler } from "@/lib/forum/handler";
 
@@ -45,5 +45,19 @@ export default forumHandler({
 
     res.status(201);
     return present(reply.toObject());
+  },
+
+  // Authors can delete their own reply; admins and supervisors can delete any.
+  DELETE: async (req, _res, me) => {
+    const id = req.query.id;
+    if (!isObjectId(id)) throw new HttpError(400, "Invalid reply");
+
+    const reply = (await ForumReply.findById(id).lean()) as { thread: unknown; authorEmail: string } | null;
+    if (!reply) throw new HttpError(404, "Reply not found");
+    if (!canDelete(me, reply.authorEmail)) throw new HttpError(403, "You can only delete your own replies");
+
+    await ForumReply.deleteOne({ _id: id });
+    await ForumThread.updateOne({ _id: reply.thread }, { $inc: { replyCount: -1 } });
+    return { ok: true };
   },
 });

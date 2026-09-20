@@ -1,4 +1,4 @@
-import { LIMITS, Me, Reply, Thread, isCategory } from "./api";
+import { LIMITS, Me, Method, Reply, Thread, canDelete, isCategory } from "./api";
 
 // A browser-only stand-in for the /api/forum routes, used in demo mode and
 // when the server has no database configured. Same paths, same response
@@ -92,7 +92,7 @@ const fail = (message: string): never => {
 export const demoFetch = async <T>(
   me: Me,
   path: string,
-  options: { method?: "GET" | "POST"; body?: any } = {}
+  options: { method?: Method; body?: any } = {}
 ): Promise<T> => {
   const url = new URL(path, "http://demo/");
   const route = url.pathname.replace(/^\//, "");
@@ -103,6 +103,17 @@ export const demoFetch = async <T>(
   const result = (() => {
     if (route === "threads" && method === "GET") {
       return [...state.threads].sort((a, b) => b.lastActivityAt.localeCompare(a.lastActivityAt));
+    }
+
+    if (route === "threads" && method === "DELETE") {
+      const thread = state.threads.find((t) => t._id === url.searchParams.get("id"));
+      if (!thread) return fail("Thread not found");
+      if (!canDelete(me, thread.authorEmail)) return fail("You can only delete your own threads");
+
+      state.threads = state.threads.filter((t) => t !== thread);
+      state.replies = state.replies.filter((r) => r.thread !== thread._id);
+      save(me, state);
+      return { ok: true };
     }
 
     if (route === "threads") {
@@ -131,6 +142,18 @@ export const demoFetch = async <T>(
       state.threads.push(thread);
       save(me, state);
       return thread;
+    }
+
+    if (route === "replies" && method === "DELETE") {
+      const reply = state.replies.find((r) => r._id === url.searchParams.get("id"));
+      if (!reply) return fail("Reply not found");
+      if (!canDelete(me, reply.authorEmail)) return fail("You can only delete your own replies");
+
+      state.replies = state.replies.filter((r) => r !== reply);
+      const thread = state.threads.find((t) => t._id === reply.thread);
+      if (thread) thread.replyCount = Math.max(0, thread.replyCount - 1);
+      save(me, state);
+      return { ok: true };
     }
 
     if (route === "replies") {

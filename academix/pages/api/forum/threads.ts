@@ -1,5 +1,5 @@
-import { LIMITS, isCategory } from "@/components/Forum/api";
-import { ForumThread } from "@/lib/forum/db";
+import { LIMITS, canDelete, isCategory } from "@/components/Forum/api";
+import { ForumReply, ForumThread, isObjectId } from "@/lib/forum/db";
 import { HttpError, forumHandler } from "@/lib/forum/handler";
 
 const present = (t: any) => ({
@@ -42,5 +42,20 @@ export default forumHandler({
 
     res.status(201);
     return present(thread.toObject());
+  },
+
+  // Authors can delete their own thread; admins and supervisors can delete any.
+  // The thread's replies go with it.
+  DELETE: async (req, _res, me) => {
+    const id = req.query.id;
+    if (!isObjectId(id)) throw new HttpError(400, "Invalid thread");
+
+    const thread = (await ForumThread.findById(id).lean()) as { authorEmail: string } | null;
+    if (!thread) throw new HttpError(404, "Thread not found");
+    if (!canDelete(me, thread.authorEmail)) throw new HttpError(403, "You can only delete your own threads");
+
+    await ForumReply.deleteMany({ thread: id });
+    await ForumThread.deleteOne({ _id: id });
+    return { ok: true };
   },
 });
