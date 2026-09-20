@@ -33,7 +33,7 @@ export default function Features() {
                 <path className="stroke-current text-n-1" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
               </svg>
               <h4 className="h4 mb-2">Milestone timelines</h4>
-              <p className="text-lg text-n-3 dark:text-white/75 text-center">A structured timeline from proposal to final review, so everyone can see what's done and what's next.</p>
+              <p className="text-lg text-n-3 dark:text-white/75 text-center">A structured timeline from proposal to final review, so everyone can see what&apos;s done and what&apos;s next.</p>
             </div>
 
             {/* 3rd item */}

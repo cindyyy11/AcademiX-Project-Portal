@@ -5,7 +5,8 @@ import modalStyles from '../../../styles/Supervisor_Modal.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 
-export default function SupervisorPreviewCaseStudy() {
+/** @param {{ onClose?: () => void }} props */
+export default function SupervisorPreviewCaseStudy(props) {
   useEffect(() => {
     const modal = document.getElementById("my_modal_4");
     if (modal && typeof modal.showModal === 'function') {

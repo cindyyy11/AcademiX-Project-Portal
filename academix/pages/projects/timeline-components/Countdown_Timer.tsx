@@ -7,10 +7,10 @@ interface TimeLeft {
   seconds?: number;
 }
 
-const CountdownTimer: React.FC<{ dueDate: string }> = ({ dueDate }) => {
+const CountdownTimer: React.FC<{ dueDate: string | null }> = ({ dueDate }) => {
 // const CountdownTimer: React.FC = () => {
   const calculateTimeLeft = (): TimeLeft => {
-    const originalDate = dueDate;
+    const originalDate = dueDate ?? 0;
     const dateObj = new Date(originalDate);
     dateObj.setHours(23, 59, 59, 0);
     const formattedDate = `${dateObj.toLocaleString('en-us', { month: 'long' })} ${dateObj.getDate()}, ${dateObj.getFullYear()} ${dateObj.toLocaleTimeString()}`;

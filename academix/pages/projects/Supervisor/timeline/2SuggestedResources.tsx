@@ -25,11 +25,10 @@ const Supervisor_Timeline_2SuggestedResources: React.FC = () => {
   console.log("id:", id);
 
   const suggestedResourcesKey = "suggested-resources-completed";
-  const [suggestedResourcesCompleted, setSuggestedResourcesCompleted] =
-    useState(() => {
-      const savedState = localStorage.getItem(suggestedResourcesKey);
-      return savedState === "true";
-    });
+  const [suggestedResourcesCompleted, setSuggestedResourcesCompleted] = useState(false);
+  useEffect(() => {
+    setSuggestedResourcesCompleted(localStorage.getItem(suggestedResourcesKey) === "true");
+  }, []);
 
   const [resources, setResources] = useState<Resource[]>([]);
 

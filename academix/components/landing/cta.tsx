@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Cta() {
   return (
     <section>
@@ -29,8 +31,8 @@ export default function Cta() {
 
             {/* CTA actions */}
             <div className="w-full land-lg:w-auto flex flex-col land-sm:flex-row justify-center land-lg:justify-end gap-2 max-w-xs mx-auto land-sm:max-w-md land-lg:max-w-none">
-              <a className="btn text-purple-1 bg-white hover:bg-purple-3 shadow-primary-4" href="/Auth/login">Join Now</a>
-              <a className="btn-stroke text-n-1" href="/Auth/login">Sign In</a>
+              <Link className="btn text-purple-1 bg-white hover:bg-purple-3 shadow-primary-4" href="/Auth/login">Join Now</Link>
+              <Link className="btn-stroke text-n-1" href="/Auth/login">Sign In</Link>
             </div>
 
           </div>

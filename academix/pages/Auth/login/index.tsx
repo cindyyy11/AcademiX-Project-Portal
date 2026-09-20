@@ -1,7 +1,7 @@
 // LoginIndex.tsx
 import React from "react";
 import Providers from "../Provider";
-import Login from "./LoginBase/Login";
+import Login from "@/components/Auth/Login";
 
 const LoginPage = () => {
   return (

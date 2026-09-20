@@ -8,7 +8,7 @@ import {
   AiFillGithub,
 } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
+import { useRegisterMutation } from "../../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/router"; // Import useRouter from Next.js

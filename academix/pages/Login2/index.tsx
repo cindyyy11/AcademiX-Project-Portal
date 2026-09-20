@@ -1,4 +1,4 @@
-import LoginBase from "./loginBase";
+import LoginBase from "@/components/Auth/Login2";
 import Providers from "pages/Auth/Provider";
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/Student_Timeline.module.css";
+import styles from "../../styles/Student_Timeline.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Student_Timeline.module.css";
 import { motion as m } from "framer-motion";
-import SetProjectDetails from "../timeline-components/Set_ProjectDetails";
-import RemoveSupervisorModal from "../timeline-components/RemoveSupervisorModal";
+import SetProjectDetails from "@/components/SetProjectDetails";
+import RemoveSupervisorModal from "@/components/RemoveSupervisorModal";
 import Layout from "@/components/Layout";
 import Supervisor_Timeline_Header from "../timeline-components/Supervisor_Timeline_Header";
 import { format } from "date-fns";

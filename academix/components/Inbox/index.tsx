@@ -1,5 +1,6 @@
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useCurrentUser } from "../../redux/features/api/apiSlice";
 import { Chat, Me, chatTitle } from "./api";
 import { useInbox } from "./useInbox";
@@ -178,7 +179,7 @@ const Inbox = () => {
   if (mounted && isError) {
     return (
       <Notice>
-        Please <a href="/Auth/login" className="mx-1 underline">sign in</a> to use messaging.
+        Please <Link href="/Auth/login" className="mx-1 underline">sign in</Link> to use messaging.
       </Notice>
     );
   }

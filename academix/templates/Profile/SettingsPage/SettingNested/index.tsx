@@ -8,12 +8,12 @@ import Security from "../Security";
 import SocialNetworks from "../SocialNetworks";
 import Notifications from "../Notifications";
 import Link from "next/link";
-import { useLoadUserQuery } from "../../../../redux/features/api/apiSlice";
+import { useCurrentUser } from "../../../../redux/features/api/apiSlice";
 
 
 const SettingsPage = () => {
   const [type, setType] = useState<string>("account");
-  const { data: userData, isLoading, isError } = useLoadUserQuery();
+  const { data: userData, isLoading, isError } = useCurrentUser();
 
   const types = [
     {
@@ -42,25 +42,11 @@ const SettingsPage = () => {
     return <div>Error loading user data</div>;
   }
 
-  const user = {
-    name: userData.user.name,
-    email: userData.user.email,
-    role: userData.user.role,
-    avatarUrl: userData.user.avatar?.url,
-  };
-
   return (
     <Layout title="Profile Settings">
       <div className="flex pt-4 lg:block">
         <div className="shrink-0 w-[20rem] 4xl:w-[14.7rem] lg:w-full lg:mb-8">
-          <Profile
-            user={{
-              name: "",
-              email: "",
-              role: "",
-              avatarUrl: "",
-            }}
-          />
+          <Profile />
         </div>
         <div className="w-[calc(100%-20rem)] pl-[6.625rem] 4xl:w-[calc(100%-14.7rem)] 2xl:pl-10 lg:w-full lg:pl-0">
           <div className="flex justify-between mb-6 md:overflow-auto md:-mx-5 md:scrollbar-none md:before:w-5 md:before:shrink-0 md:after:w-5 md:after:shrink-0">

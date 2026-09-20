@@ -1,5 +1,5 @@
 import React from "react";
-import statusStyles from "../../../styles/Status_Badge.module.css";
+import statusStyles from "../../styles/Status_Badge.module.css";
 
 // Define status options as readonly
 const statusOptions = {

@@ -2,9 +2,9 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import Tabs from "@/components/Tabs";
 import Icon from "@/components/Icon";
-import Sorting from "@/components/Sorting/Index";
+import Sorting from "@/components/Sorting";
 import Checkbox from "@/components/Checkbox";
-import TablePagination from "@/components/TablePagination/Index";
+import TablePagination from "@/components/TablePagination";
 import Row from "./Row";
 import Link from "next/link";
 

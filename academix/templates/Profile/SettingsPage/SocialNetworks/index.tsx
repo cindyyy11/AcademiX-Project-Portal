@@ -1,6 +1,6 @@
 import Icon from "@/components/Icon";
 
-import { socialProfiles } from "@/mocks/profile";
+import { socialNetworks } from "@/mocks/profile";
 
 type SocialNetworksProps = {};
 
@@ -9,7 +9,7 @@ const SocialNetworks = ({}: SocialNetworksProps) => (
         <div className="card-title">Social profiles</div>
         <div className="p-5">
             <div>
-                {socialProfiles.map((item) => (
+                {socialNetworks.map((item) => (
                     <div
                         className="flex items-center mb-4 pb-4 border-b border-n-3 pl-3 md:pl-0 dark:border-white"
                         key={item.id}

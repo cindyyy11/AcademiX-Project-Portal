@@ -64,9 +64,7 @@
     ".next/types/**/*.ts",
     "pages/projects/Admin/feedback.tsx",
     "pages/projects/Admin/projectdetails.tsx",
-    "pages/projects/Student/timeline-3proposal.tsx",
-    "pages/landingPage/index.jsx",
-    "pages/landingPage/components/Layout.tsx"
+    "pages/projects/Student/timeline-3proposal.tsx"
   ],
   "exclude": [
     "node_modules"

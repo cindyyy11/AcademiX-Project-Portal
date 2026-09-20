@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Modal from "@/components/Modal";
 import Field from "@/components/Field";
-import Select from "@/components/Select/Index";
+import Select from "@/components/Select";
 import Icon from "@/components/Icon";
 
 type Supervisor = {

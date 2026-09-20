@@ -2,8 +2,9 @@ import React from "react";
 import { useCurrentUser } from "../../redux/features/api/apiSlice";
 import Profile from "@/components/Profile/Index";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import Providers from "../Auth/Provider";
 
-const ProfilePage = () => {
+const ProfileContent = () => {
   const { data: userData, isLoading, isError } = useCurrentUser();
 
   if (isLoading) {
@@ -14,18 +15,17 @@ const ProfilePage = () => {
     return <div>Error loading user data</div>;
   }
 
-  const user = {
-    name: userData.user.name,
-    email: userData.user.email,
-    role: userData.user.role,
-    avatarUrl: userData.user.avatar?.url,
-  };
-
   return (
     <div className="container mx-auto p-4">
-      <Profile user={user} actions />
+      <Profile actions />
     </div>
   );
 };
+
+const ProfilePage = () => (
+  <Providers>
+    <ProfileContent />
+  </Providers>
+);
 
 export default ProfilePage;

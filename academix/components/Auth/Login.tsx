@@ -2,12 +2,12 @@
 import React, { FC, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useLoginMutation } from "../../../../redux/features/auth/authApi";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { enterDemoMode } from "../../../../redux/features/api/apiSlice";
+import { enterDemoMode } from "../../redux/features/api/apiSlice";
 
 const schema = Yup.object().shape({
   email: Yup.string()

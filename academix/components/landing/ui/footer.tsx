@@ -44,7 +44,7 @@ export default function Footer() {
                     <Link href="/signup" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Create an account</Link>
                   </li>
                   <li className="mb-1">
-                    <a href="/Auth/login" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Sign in</a>
+                    <Link href="/Auth/login" className="text-n-3 dark:text-white/75 hover:text-n-1 dark:hover:text-white transition duration-150 ease-in-out">Sign in</Link>
                   </li>
                 </ul>
               </div>
