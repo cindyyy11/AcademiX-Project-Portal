@@ -4,6 +4,7 @@ import ErrorHandler from "../utils/ErrorHandler";
 import { IOrder } from "../models/order.model";
 import userModel from "../models/user.model";
 import CourseModel, { ICourse } from "../models/course.model";
+import mongoose from "mongoose";
 import path from "path";
 import ejs from "ejs";
 import sendMail from "../utils/sendMail";
@@ -58,7 +59,7 @@ export const createOrder = CatchAsyncError(
 
       const mailData = {
         order: {
-          _id: course._id.toString().slice(0, 6),
+          _id: String(course._id).slice(0, 6),
           name: course.name,
           price: course.price,
           date: new Date().toLocaleDateString("en-US", {
@@ -87,7 +88,7 @@ export const createOrder = CatchAsyncError(
         return next(new ErrorHandler(error.message, 500));
       }
 
-      user?.courses.push(course?._id);
+      user?.courses.push(course._id as mongoose.Types.ObjectId);
 
       await redis.set(req.user?._id as string, JSON.stringify(user));
 
