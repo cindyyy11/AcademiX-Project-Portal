@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Icon from "@/components/Icon";
 import Image from "@/components/Image";
 import Create from "./Create";
+import Notifications from "./Notifications";
+import Search from "./Search";
 import Apps from "./Apps";
 import { useSidebarCollapsed } from "../../hooks/useSidebarCollapsed";
 
@@ -44,13 +46,8 @@ const Header = ({ back, title }: HeaderProps) => {
                     </div>
                 )}
                 <div className="flex items-center shrink-0 ml-auto">
-                    <button className="btn-transparent-dark btn-square btn-medium mr-2 md:!w-6 md:h-6">
-                        <Icon name="search" />
-                    </button>
-                    <button className="btn-transparent-dark btn-square btn-medium relative mr-2 md:w-6 md:h-6">
-                        <Icon name="notification" />
-                        <div className="absolute top-1.5 right-[0.5625rem] w-2 h-2 border border-white rounded-full bg-green-1 md:top-0.5 md:right-[0.5rem] dark:border-n-2"></div>
-                    </button>
+                    <Search />
+                    <Notifications />
                     <Apps />
                     <Create />
                     <button className="relative hidden w-8 h-8 ml-1 md:block">

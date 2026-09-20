@@ -12,7 +12,6 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript" />
   <img alt="Express" src="https://img.shields.io/badge/Express-4-black?logo=express" />
   <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-Mongoose-green?logo=mongodb" />
-  <img alt="Socket.io" src="https://img.shields.io/badge/Socket.io-realtime-black?logo=socket.io" />
 </p>
 
 ## Overview
@@ -20,8 +19,8 @@
 AcademiX is a full-stack platform that manages the entire lifecycle of a Final Year / capstone
 project — from case study and proposal, through project planning and milestones, to final
 documentation, grading, and result & review. Students, Supervisors, and Admins each get a
-dedicated dashboard and workflow, backed by task/kanban boards, a calendar, a file manager, and
-real-time chat and notifications.
+dedicated dashboard and workflow, backed by task/kanban boards, a calendar, a file manager, an
+inbox, a discussion forum, search, and notifications.
 
 ## Screenshots
 
@@ -43,14 +42,22 @@ real-time chat and notifications.
 - **Tasks & Kanban boards** — per-project task tracking with drag-and-drop boards
 - **Calendar** — deadlines and milestone scheduling
 - **File manager** — upload and organize project documents/deliverables
-- **Real-time inbox** — chat between students and supervisors
-- **Real-time notifications** — pushed over Socket.io
+- **Inbox** — direct and group chats between students and supervisors, stored in MongoDB and
+  refreshed by polling every few seconds
+- **Forum** — in-portal discussion threads with categories (General, Projects, Resources, Q&A) and
+  replies. Authors can delete their own posts; admins and supervisors can delete any
+- **Search** — the header search finds portal pages (for your role) and forum threads, with keyboard
+  navigation. Picking a thread opens it directly
+- **Notifications** — the header bell lists new messages and replies to your forum threads from the
+  last 14 days, with unread tracking and "Mark all as read". Read state is kept in your browser
+- **Demo mode** — the login page's demo account lets you explore the portal without a backend. The
+  inbox, forum, and notifications then run on sample data saved only in your browser
 
 ## Tech stack
 
 | Service | Stack |
 | --- | --- |
-| `academix` (main frontend) | Next.js 14, React 18, TypeScript, Chakra UI, Tailwind CSS, Redux Toolkit |
+| `academix` (main app: UI plus the inbox, forum, and notifications API routes) | Next.js 14, React 18, TypeScript, Chakra UI, Tailwind CSS, Redux Toolkit, MongoDB/Mongoose |
 | `fyp-management-system-backend` (core API) | Node.js, Express, TypeScript, MongoDB/Mongoose, Redis, Socket.io, JWT auth |
 
 ## Project structure
@@ -58,9 +65,11 @@ real-time chat and notifications.
 ```
 AcademiX-Project-Portal/
 ├── academix/                        # Main app (Next.js, port 3000)
-│   ├── pages/                       #   Admin / Student / Supervisor dashboards, projects, auth, inbox, crm...
-│   ├── components/                  #   Shared UI components (Layout, Sidebar, Header, Logo, Modal, ...)
-│   ├── redux/features/              #   Redux Toolkit slices & RTK Query API (auth, user, notifications)
+│   ├── pages/                       #   Admin / Student / Supervisor dashboards, projects, auth, inbox, forum, crm...
+│   ├── pages/api/                   #   Next.js API routes: inbox/, forum/ (includes notifications)
+│   ├── lib/                         #   Server helpers for the API routes (MongoDB models, caller checks)
+│   ├── components/                  #   Shared UI (Layout, Sidebar, Header with search and bell, Inbox, Forum, ...)
+│   ├── redux/features/              #   Redux Toolkit slices & RTK Query API (auth, user)
 │   ├── templates/                   #   Page-level templates (Dashboard, CRM, Profile, Project Management...)
 │   ├── hooks/ constants/ mocks/     #   Shared hooks, nav config, mock data for UI states
 │   ├── public/                      #   Static assets (logo, images, file manager icons)
@@ -72,16 +81,34 @@ AcademiX-Project-Portal/
 │   ├── routes/                      #   Express routers, mounted under /api/v1
 │   ├── services/                    #   Business logic used by controllers
 │   ├── middleware/                  #   Auth, error handling, rate limiting
-│   └── socketServer.ts              #   Real-time notifications/chat via Socket.io
+│   └── socketServer.ts              #   Socket.io server (the inbox, forum, and notifications poll instead)
 ```
 
 ## Getting started
 
 Each service runs independently — start the ones you need in separate terminals:
 
-1. **Main app** — `cd academix && npm run dev` → http://localhost:3000 (serves the marketing site at `/`, the dashboards, and the inbox chat auth API)
+1. **Main app** — `cd academix && npm run dev` → http://localhost:3000 (serves the marketing site at `/`, the dashboards, and the API routes for the inbox, forum, and notifications)
 2. **Core backend API** — `cd fyp-management-system-backend && npm run dev` → http://localhost:8000
 
 > Each service manages its own dependencies — run `npm install` inside each folder before its
-> first `npm run dev`. Backend services also expect their own `.env` file (Mongo/Redis URIs,
-> JWT secrets, Stripe keys, etc.) which is not committed to this repo.
+> first `npm run dev`.
+
+### Environment
+
+Each service reads its own env file, and neither is committed. Copy `.env.example` to
+`academix/.env.local` and `fyp-management-system-backend/.env`, then fill in the values (Mongo/Redis
+URIs, JWT secrets, Stripe keys, etc. for the backend).
+
+For the inbox, forum, and notifications in `academix`:
+
+- `MONGODB_URI` — the MongoDB database they store data in. If it isn't set, they fall back to the
+  browser-only demo data instead of failing.
+- `ACCESS_TOKEN` — must be the same value as `ACCESS_TOKEN` in the core backend. The forum and
+  notifications routes use it to verify who is calling.
+- `NEXT_PUBLIC_SERVER_URI` — the core backend's API URL, e.g. `http://localhost:8000/api/v1/`.
+
+### Trying it without a backend
+
+Open the login page and use the demo account. It signs you in as a sample student, and the inbox,
+forum, and notifications use sample data saved only in your browser.
