@@ -28,6 +28,7 @@ import Supervisor_Timeline_Header from "../timeline-components/Supervisor_Timeli
 
 import { useRouter } from "next/router";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 interface ProjectModificationDate {
   caseStudyDate: string;
@@ -61,7 +62,7 @@ export default function Supervisor_TimelineList() {
     const fetchProjectModificationDate = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/get-modify-date/${id}`
+          `${API_URL}get-modify-date/${id}`
         );
         if (response.data.success) {
           setProjectModificationDate(response.data.projectModificationDate);

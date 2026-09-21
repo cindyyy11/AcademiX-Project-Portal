@@ -23,6 +23,7 @@ import {
 import Layout from "@/components/Layout";
 import Student_Timeline_Header from "../timeline-components/Student_Timeline_Header";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 
 const Student_Timeline_6ResultAndReview = () => {
@@ -55,7 +56,7 @@ const Student_Timeline_6ResultAndReview = () => {
     async function fetchGradeDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-grade/${id}`
+          `${API_URL}get-grade/${id}`
         );
         const data = await response.json();
         console.log("Fetched grading details:", data); // Log the fetched data

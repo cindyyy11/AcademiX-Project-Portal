@@ -10,6 +10,7 @@ import {
 } from "@/components/StatusLabel";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 type ProposalDetails = {
   title: string;
@@ -57,7 +58,7 @@ const Supervisor_Timeline_3Proposal: React.FC = () => {
   async function fetchProposal(projectId: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-proposal/${projectId}`
+        `${API_URL}get-proposal/${projectId}`
       );
       console.log("Fetched proposal:", response.data);
 

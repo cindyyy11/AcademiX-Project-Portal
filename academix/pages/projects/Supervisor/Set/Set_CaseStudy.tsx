@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type CaseStudy = {
   supervisorName: string;
@@ -58,7 +59,7 @@ export default function SupervisorSetCaseStudy(_props: { onClose?: () => void })
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/create-case-study/${id}`,
+        `${API_URL}create-case-study/${id}`,
         {
           method: "POST",
           headers: {

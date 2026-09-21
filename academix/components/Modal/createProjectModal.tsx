@@ -4,6 +4,7 @@ import Modal from "@/components/Modal";
 import Field from "@/components/Field";
 import Select from "@/components/Select";
 import Icon from "@/components/Icon";
+import { API_URL } from "@/lib/api";
 
 type Supervisor = {
   _id: string;
@@ -49,7 +50,7 @@ const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
     const fetchSupervisors = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/v1/get-supervisors"
+          `${API_URL}get-supervisors`
         );
         setSupervisors(response.data.supervisors);
       } catch (err) {
@@ -89,7 +90,7 @@ const CreateProjectModal: React.FC<Props> = ({ onClose }) => {
     setSubmitting(true);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/create-project-details`,
+        `${API_URL}create-project-details`,
         {
           method: "POST",
           headers: {

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 export default function FinalDocSubmissionReviewForm({ finalDocId, onClose }) {
   const [reviewStatus, setReviewStatus] = useState("");
@@ -29,7 +30,7 @@ export default function FinalDocSubmissionReviewForm({ finalDocId, onClose }) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8000/api/v1/edit-final-status/${finalDocId}`,
+        `${API_URL}edit-final-status/${finalDocId}`,
         {
           reviewStatus,
           review,

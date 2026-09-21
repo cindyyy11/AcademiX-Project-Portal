@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import style from "../../../styles/Student_Timeline.module.css";
 import { useState, useEffect } from "react";
+import { API_URL } from "@/lib/api";
 
 type ProjectDetails = {
   title: string;
@@ -47,7 +48,7 @@ const Admin_Timeline_Header: React.FC = () => {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

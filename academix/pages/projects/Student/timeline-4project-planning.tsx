@@ -9,6 +9,7 @@ import people from "../../../mocks/people"; // Adjust path according to your pro
 import Layout from "../../../components/Layout";
 import styles from "../../../styles/Student_Timeline.module.css";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 interface Person {
   name: string;
@@ -46,7 +47,7 @@ const Student_Timeline_4ProjectPlanning: React.FC = () => {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         const data = await response.json();
         console.log("Fetched project details:", data); // Log the fetched data

@@ -9,6 +9,7 @@ import styles from "../../../styles/Student_Timeline.module.css";
 import Layout from "@/components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type SuggestedDetails = {
   resourceDocument: string;
@@ -55,7 +56,7 @@ const Student_Timeline_2SuggestedResources: React.FC = () => {
   async function fetchResource(projectId: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-suggested-resource/${projectId}`
+        `${API_URL}get-suggested-resource/${projectId}`
       );
       console.log("Fetched resource:", response.data);
 

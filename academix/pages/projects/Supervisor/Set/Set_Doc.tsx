@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type FinalDocDetails = {
   title: string;
@@ -66,7 +67,7 @@ export default function SupervisorSetDoc(_props: { onClose?: () => void }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/create-final-doc/${id}`,
+        `${API_URL}create-final-doc/${id}`,
         {
           method: "POST",
           headers: {

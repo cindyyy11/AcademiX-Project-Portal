@@ -15,6 +15,7 @@ import {
 import Layout from "@/components/Layout";
 import Student_Timeline_Header from "../timeline-components/Student_Timeline_Header";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 type ProposalDetails = {
   title: string;
@@ -140,7 +141,7 @@ const Student_Timeline_3Proposal: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/submit-proposal/${projectId}`,
+        `${API_URL}submit-proposal/${projectId}`,
         {
           method: "POST",
           body: formData,
@@ -230,7 +231,7 @@ const Student_Timeline_3Proposal: React.FC = () => {
   async function fetchProposal(projectId: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-proposal/${projectId}`
+        `${API_URL}get-proposal/${projectId}`
       );
       console.log("Fetched proposal:", response.data);
 
@@ -304,7 +305,7 @@ const Student_Timeline_3Proposal: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/submit-proposal/${id}`,
+        `${API_URL}submit-proposal/${id}`,
         {
           method: "PUT",
           headers: {

@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { API_URL } from "@/lib/api";
 
 interface RemoveSupervisorModalProps {
   onClose: () => void;
@@ -12,7 +13,7 @@ const RemoveSupervisorModal: React.FC<RemoveSupervisorModalProps> = ({ onClose, 
 
   const handleRemoveSupervisor = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/projects/${projectId}/remove-supervisor`, {
+      const response = await fetch(`${API_URL}projects/${projectId}/remove-supervisor`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type Props = {
   projectDetails: ProjectDetails;
@@ -63,7 +64,7 @@ const SetProjectDetails: React.FC<Props> = ({
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/edit-project-details/${id}`,
+        `${API_URL}edit-project-details/${id}`,
         {
           method: "PUT",
           headers: {

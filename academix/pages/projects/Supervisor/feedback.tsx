@@ -7,6 +7,7 @@ import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../../styles/Student_Timeline.module.css";
 import Supervisor_Timeline_RightNav from "../timeline-components/Supervisor_Timeline_RightNav";
 import Supervisor_Timeline_Header from "../timeline-components/Supervisor_Timeline_Header";
+import { API_URL } from "@/lib/api";
 
 type Supervisor = {
   name: string;
@@ -73,7 +74,7 @@ const Supervisor_Feedback = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`,
+          `${API_URL}get-single-project/${id}`,
           {
             method: "GET",
             headers: {
@@ -118,7 +119,7 @@ const Supervisor_Feedback = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/create-feedback/${id}`,
+        `${API_URL}create-feedback/${id}`,
         {
           method: "POST",
           headers: {

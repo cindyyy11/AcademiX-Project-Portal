@@ -10,6 +10,7 @@ import {
 } from "@/components/StatusLabel";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type FinalDocDetails = {
   title: string;
@@ -69,7 +70,7 @@ const Supervisor_Timeline_5FinalDocumentation: React.FC = () => {
   async function fetchFinalDoc(id: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-final-doc/${id}`
+        `${API_URL}get-final-doc/${id}`
       );
       console.log("Fetched finalDoc:", response.data);
 
