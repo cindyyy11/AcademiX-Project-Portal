@@ -5,6 +5,7 @@ import people from "../../../../mocks/people";
 import CountdownTimer from "../../timeline-components/Countdown_Timer";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { API_URL } from "@/lib/api";
 
 interface Person {
   name: string;
@@ -42,7 +43,7 @@ const Supervisor_Timeline_4ProjectPlanning: React.FC = () => {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         const data = await response.json();
         console.log("Fetched project details:", data); // Log the fetched data

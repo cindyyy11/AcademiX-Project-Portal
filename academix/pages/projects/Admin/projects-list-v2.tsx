@@ -15,6 +15,7 @@ import type { NextPage } from "next";
 import ProjectsListV2Page from "@/templates/ProjectManagement/ProjectsListV2Page/Index";
 import ProjectsEmptyPage from "@/templates/ProjectManagement/ProjectsEmptyPage";
 import { useEffect, useState } from "react"; // Import useEffect and useState hooks for managing state
+import { API_URL } from "@/lib/api";
 
 const Projects: NextPage = () => {
   const [projects, setProjects] = useState<any[]>([]); // State to hold projects, initialized as an empty array
@@ -27,7 +28,7 @@ const Projects: NextPage = () => {
   const fetchProjects = async () => {
     // Replace with actual API call to fetch projects
     try {
-      const response = await fetch('http://localhost:8000/api/v1/get-all-projects');
+      const response = await fetch(`${API_URL}get-all-projects`);
       if (response.ok) {
         const data = await response.json();
         setProjects(data.projects); // Assuming API returns an array of projects

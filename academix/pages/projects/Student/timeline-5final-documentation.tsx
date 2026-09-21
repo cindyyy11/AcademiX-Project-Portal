@@ -15,6 +15,7 @@ import {
 import Layout from "@/components/Layout";
 import Student_Timeline_Header from "../timeline-components/Student_Timeline_Header";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 type FinalDocDetails = {
   title: string;
@@ -198,7 +199,7 @@ const Student_Timeline_5FinalDocumentation: React.FC = () => {
   async function fetchFinalDoc(id: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-final-doc/${id}`
+        `${API_URL}get-final-doc/${id}`
       );
       console.log("Fetched finalDoc:", response.data);
 
@@ -268,7 +269,7 @@ const Student_Timeline_5FinalDocumentation: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/submit-final-doc/${id}`,
+        `${API_URL}submit-final-doc/${id}`,
         {
           method: "PUT",
           headers: {

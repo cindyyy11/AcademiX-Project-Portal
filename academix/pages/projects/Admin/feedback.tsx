@@ -17,6 +17,7 @@ import Admin_Timeline_Header from "pages/projects/timeline-components/Admin_Time
 import Layout from "@/components/Layout";
 import styles from "styles/Student_Timeline.module.css";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type Feedback = {
   _id: string;
@@ -53,7 +54,7 @@ const Admin_Feedback: React.FC = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-feedback/${id}`,
+          `${API_URL}get-feedback/${id}`,
           {
             method: "GET",
             headers: {
@@ -88,7 +89,7 @@ const Admin_Feedback: React.FC = () => {
     console.log("Feedback ID:", feedbackID);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/edit-feedback-status/${feedbackID}`,
+        `${API_URL}edit-feedback-status/${feedbackID}`,
         {
           method: "PUT",
           headers: {

@@ -6,6 +6,7 @@ import Row from "./Row/Index";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CreateProjectModal from "@/components/Modal/createProjectModal";
+import { API_URL } from "@/lib/api";
 
 type ProjectDetails = {
   title: string;
@@ -40,7 +41,7 @@ const ProjectsListV2Page = () => {
     async function fetchProjects() {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/get-all-projects"
+          `${API_URL}get-all-projects`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

@@ -8,6 +8,7 @@ import { motion as m } from "framer-motion";
 import styles from "../../../styles/Student_Timeline.module.css";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type ProjectDetails = {
   title: string;
@@ -65,7 +66,7 @@ const Student_Timeline_1ViewCaseStudy: React.FC = () => {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -134,7 +135,7 @@ const Student_Timeline_1ViewCaseStudy: React.FC = () => {
   async function fetchCaseStudy(caseStudyId: string) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/get-case-study/${caseStudyId}`
+        `${API_URL}get-case-study/${caseStudyId}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import Student_Timeline_Header from "../timeline-components/Student_Timeline_Header";
 import { format } from "date-fns"; // Import date formatting function if not already imported
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 export default function StudentProject_Details() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function StudentProject_Details() {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         const data = await response.json();
         console.log("Fetched project details:", data); // Log the fetched data

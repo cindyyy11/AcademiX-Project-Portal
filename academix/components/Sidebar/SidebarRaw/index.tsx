@@ -12,6 +12,7 @@ import {
   isDemoMode,
   exitDemoMode,
 } from "../../../redux/features/api/apiSlice";
+import { API_URL } from "@/lib/api";
 
 type SidebarProps = {};
 
@@ -29,7 +30,7 @@ const SidebarRaw = ({}: SidebarProps) => {
       return;
     }
     try {
-      await axios.get("http://localhost:8000/api/v1/logout");
+      await axios.get(`${API_URL}logout`);
       window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);

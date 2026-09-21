@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { motion as m } from "framer-motion";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type SuggestedDetails = {
   title: string;
@@ -84,7 +85,7 @@ const SupervisorSetResource: React.FC<{ onClose?: () => void }> = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/create-suggested-resource/${id}`,
+        `${API_URL}create-suggested-resource/${id}`,
         {
           method: "POST",
           headers: {

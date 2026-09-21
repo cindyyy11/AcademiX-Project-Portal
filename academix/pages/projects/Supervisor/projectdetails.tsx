@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import Supervisor_Timeline_Header from "../timeline-components/Supervisor_Timeline_Header";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
+import { API_URL } from "@/lib/api";
 
 type Supervisor = {
   name: string;
@@ -57,7 +58,7 @@ const SupervisorProject_Details: React.FC = () => {
     async function fetchProjectDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/get-single-project/${id}`
+          `${API_URL}get-single-project/${id}`
         );
         const data = await response.json();
         console.log("Fetched project details:", data); // Log the fetched data

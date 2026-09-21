@@ -15,6 +15,7 @@ import Layout from "@/components/Layout";
 import Supervisor_Timeline_Header from "../timeline-components/Supervisor_Timeline_Header";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 type ProposalDetails = {
   title: string;
@@ -74,7 +75,7 @@ export default function Supervisor_Submission() {
   async function fetchProposal(projectId: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-proposal/${projectId}`
+        `${API_URL}get-proposal/${projectId}`
       );
       console.log("Fetched proposal:", response.data);
 
@@ -119,7 +120,7 @@ export default function Supervisor_Submission() {
   async function fetchFinalDoc(id: string) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/get-final-doc/${id}`
+        `${API_URL}get-final-doc/${id}`
       );
       console.log("Fetched finalDoc:", response.data);
 
