@@ -1,5 +1,6 @@
 import { KeyboardEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useCurrentUser } from "../../redux/features/api/apiSlice";
 import { CATEGORIES, Category, LIMITS, Me, Thread, canDelete, timeAgo } from "./api";
 import { useForum } from "./useForum";
@@ -215,7 +216,7 @@ const Forum = () => {
   if (mounted && isError) {
     return (
       <Notice>
-        Please <a href="/Auth/login" className="mx-1 underline">sign in</a> to use the forum.
+        Please <Link href="/Auth/login" className="mx-1 underline">sign in</Link> to use the forum.
       </Notice>
     );
   }

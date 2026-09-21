@@ -204,16 +204,16 @@ const Supervisor_Timeline_1ViewCaseStudy: React.FC = () => {
     "1.	Be able to design, develop, test and implement an extensive application. 2.	Develop professional competency in teamwork and co-ordination within a set period. 3.	Be able to present a software development project professionally.";
 
   const ruleAgreementKey = "rule-agreed";
-  const [toggled, setToggled] = useState(() => {
-    const savedState = localStorage.getItem(ruleAgreementKey);
-    return savedState === "true";
-  });
+  const [toggled, setToggled] = useState(false);
+  useEffect(() => {
+    setToggled(localStorage.getItem(ruleAgreementKey) === "true");
+  }, []);
 
   const viewCaseStudyKey = "view-case-study-completed";
-  const [viewCaseStudyCompleted, setViewCaseStudyCompleted] = useState(() => {
-    const savedState = localStorage.getItem(viewCaseStudyKey);
-    return savedState === "true";
-  });
+  const [viewCaseStudyCompleted, setViewCaseStudyCompleted] = useState(false);
+  useEffect(() => {
+    setViewCaseStudyCompleted(localStorage.getItem(viewCaseStudyKey) === "true");
+  }, []);
 
   return (
     <>

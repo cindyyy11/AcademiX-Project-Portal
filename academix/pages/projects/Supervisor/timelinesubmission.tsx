@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styles from "../../../styles/Student_Timeline.module.css";
 import modalStyles from "../../../styles/Supervisor_Modal.module.css";
 import { motion as m } from "framer-motion";

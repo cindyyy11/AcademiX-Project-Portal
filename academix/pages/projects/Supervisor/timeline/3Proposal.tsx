@@ -7,7 +7,7 @@ import { motion as m } from "framer-motion";
 import {
   StatusLabel,
   statusOptions,
-} from "../../timeline-components/Status_Label";
+} from "@/components/StatusLabel";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -39,10 +39,10 @@ const Supervisor_Timeline_3Proposal: React.FC = () => {
   const proposalKey = "proposal-completed";
   const proposalStatus = statusOptions["no submission"];
 
-  const [proposalCompleted, setProposalCompleted] = useState(() => {
-    const savedState = localStorage.getItem(proposalKey);
-    return savedState === "true";
-  });
+  const [proposalCompleted, setProposalCompleted] = useState(false);
+  useEffect(() => {
+    setProposalCompleted(localStorage.getItem(proposalKey) === "true");
+  }, []);
 
   const [proposal, setProposal] = useState<Proposal[]>([]);
   //Get Proposal

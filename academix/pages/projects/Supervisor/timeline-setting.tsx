@@ -344,7 +344,7 @@ export default function Supervisor_TimelineList() {
                           <div>
                             <div className="font-bold">4. Project Planning</div>
                             <div className="text-sm opacity-50">
-                              View student's progress
+                              View student&apos;s progress
                             </div>
                           </div>
                         </div>

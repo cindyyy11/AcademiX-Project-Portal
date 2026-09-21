@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Student_Timeline.module.css";
 import { motion as m } from "framer-motion";
-import SetProjectDetails from "../timeline-components/Set_ProjectDetails";
-import RemoveSupervisorModal from "../timeline-components/RemoveSupervisorModal";
+import SetProjectDetails from "@/components/SetProjectDetails";
+import RemoveSupervisorModal from "@/components/RemoveSupervisorModal";
 import Layout from "@/components/Layout";
 import { format } from "date-fns";
 import Admin_Timeline_Header from "../timeline-components/Admin_Timeline_Header";
@@ -26,7 +26,7 @@ type ProjectDetails = {
   supervisor: Supervisor | null;
   supervisorId: string;
   members: [];
-  _id?: string | string[] | undefined; // Make _id optional
+  _id?: string; // Make _id optional
 };
 
 const SupervisorProject_Details: React.FC = () => {
@@ -49,7 +49,7 @@ const SupervisorProject_Details: React.FC = () => {
     supervisor: null,
     supervisorId: "",
     members: [],
-    _id: id,
+    _id: Array.isArray(id) ? id[0] : id,
   });
 
   // Fetch initial project details from the backend

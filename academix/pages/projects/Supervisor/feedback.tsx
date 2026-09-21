@@ -159,12 +159,12 @@ const Supervisor_Feedback = () => {
               <div className={styles.timelineSectionDescription}>
                 Feedback is a crucial component of the project lifecycle,
                 providing insights and evaluations from various stakeholders
-                about the project's progress, quality, and outcomes. It helps
+                about the project&apos;s progress, quality, and outcomes. It helps
                 identify strengths and areas for improvement, ensuring that the
                 final deliverables meet or exceed expectations. Constructive
                 feedback fosters continuous improvement, enhances team
                 performance, and aligns the project outcomes with the
-                stakeholders' needs and objectives. By actively seeking and
+                stakeholders&apos; needs and objectives. By actively seeking and
                 integrating feedback, project teams can make informed decisions,
                 address issues proactively, and achieve a higher standard of
                 excellence in their work.

@@ -1,5 +1,5 @@
 import Providers from "../Provider";
-import Verification from "./verificationBase/Verification";
+import Verification from "@/components/Auth/Verification";
 
 import React from "react";
 

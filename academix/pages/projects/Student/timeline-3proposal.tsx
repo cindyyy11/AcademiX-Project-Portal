@@ -11,7 +11,7 @@ import { motion as m } from "framer-motion";
 import {
   StatusLabel,
   statusOptions,
-} from "../timeline-components/Status_Label";
+} from "@/components/StatusLabel";
 import Layout from "@/components/Layout";
 import Student_Timeline_Header from "../timeline-components/Student_Timeline_Header";
 import axios from "axios";

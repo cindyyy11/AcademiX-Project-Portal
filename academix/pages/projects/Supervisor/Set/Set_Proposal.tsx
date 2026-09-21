@@ -26,7 +26,7 @@ const initialProposalState: Proposal = {
   },
 };
 
-export default function SupervisorSetProposal() {
+export default function SupervisorSetProposal(_props: { onClose?: () => void }) {
   const [proposal, setProposal] = useState<Proposal>(initialProposalState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();

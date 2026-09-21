@@ -25,7 +25,7 @@ const initialFinalDocState: FinalDoc = {
   },
 };
 
-export default function SupervisorSetDoc() {
+export default function SupervisorSetDoc(_props: { onClose?: () => void }) {
   const [finalDoc, setFinalDoc] = useState<FinalDoc>(initialFinalDocState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();

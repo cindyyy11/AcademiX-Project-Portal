@@ -28,7 +28,7 @@ const initialResourceState: Resource = {
   },
 };
 
-const SupervisorSetResource: React.FC = () => {
+const SupervisorSetResource: React.FC<{ onClose?: () => void }> = () => {
   const [resource, setResource] = useState<Resource>(initialResourceState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();

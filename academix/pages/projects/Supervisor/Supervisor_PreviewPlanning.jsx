@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import Supervisor_Timeline_4ProjectPlanning from './timeline/4ProjectPlanning';
 
-export default function SupervisorPreviewPlanning() {
+/** @param {{ onClose?: () => void }} props */
+export default function SupervisorPreviewPlanning(props) {
   useEffect(() => {
     // Ensure the element is present before calling showModal
     const modal = document.getElementById("my_modal_4");

@@ -293,7 +293,7 @@ export default function Admin_TimelineList() {
                                 4. Project Planning
                               </div>
                               <div className="text-sm opacity-50">
-                                View student's progress
+                                View student&apos;s progress
                               </div>
                             </div>
                           </div>

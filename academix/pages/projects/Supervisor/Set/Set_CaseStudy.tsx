@@ -14,7 +14,7 @@ type CaseStudy = {
   caseStudyDir: string;
 };
 
-export default function SupervisorSetCaseStudy() {
+export default function SupervisorSetCaseStudy(_props: { onClose?: () => void }) {
   useEffect(() => {
     const modal = document.getElementById("my_modal_4") as HTMLDialogElement;
     if (modal && typeof modal.showModal === "function") {

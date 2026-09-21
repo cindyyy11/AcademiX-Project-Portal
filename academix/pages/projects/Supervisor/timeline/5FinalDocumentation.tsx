@@ -7,7 +7,7 @@ import { motion as m } from "framer-motion";
 import {
   StatusLabel,
   statusOptions,
-} from "../../timeline-components/Status_Label";
+} from "@/components/StatusLabel";
 import axios from "axios";
 import { useRouter } from "next/router";
 

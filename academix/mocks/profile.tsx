@@ -350,3 +350,9 @@ export const socialProfiles = [
   { id: 9, name: "Linda White", email: "linda.white@example.com", service: "WhatsApp", status: "Inactive", profile: "https://whatsapp.com/lindawhite" },
   { id: 10, name: "David Thomas", email: "david.thomas@example.com", service: "YouTube", status: "Active", profile: "https://youtube.com/davidthomas" },
 ];
+
+export const socialNetworks = [
+  { id: 1, icon: "twitter", label: "Twitter", link: "https://twitter.com/academix" },
+  { id: 2, icon: "facebook", label: "Facebook", link: "" },
+  { id: 3, icon: "dribbble", label: "Dribbble", link: "" },
+];

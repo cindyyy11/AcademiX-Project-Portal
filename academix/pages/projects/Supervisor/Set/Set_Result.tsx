@@ -22,7 +22,7 @@ const initialGradeState: grade = {
   overallReview: "",
 };
 
-export default function SupervisorSetResult() {
+export default function SupervisorSetResult(_props: { onClose?: () => void }) {
   const [grade, setGrade] = useState<grade>(initialGradeState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
